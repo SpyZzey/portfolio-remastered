@@ -1,51 +1,69 @@
 ---
-import './global.css'
+import './global.css';
 ---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.webp" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/favicon.webp"
+        />
+        <meta
+            name="generator"
+            content={Astro.generator}
+        />
+        <title>Astro Basics</title>
+    </head>
+    <body>
+        <slot />
         <div class="cursor-ring"></div>
-	</body>
+    </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
         cursor: none;
-	}
+    }
     body:has(button:hover, a:hover) > .cursor-ring {
         width: 24px;
         height: 24px;
         border-color: #029d8b;
         &.clicking {
             background: rgb(1, 83, 73);
+
             width: 16px;
             height: 16px;
         }
     }
 
     .cursor-ring {
-         position: fixed;
-         width: 20px;
-         height: 20px;
-         border: 3px solid #8c40eb;
-         border-radius: 50%;
-         pointer-events: none;
-         transform: translate(-50%, -50%);
-         transition: width .15s ease, height .15s ease, background .2s ease, border-color .2s ease;
-         z-index: 10000;
-     }
+        pointer-events: none;
+        position: fixed;
+        width: 20px;
+
+        height: 20px;
+        border: 3px solid #8c40eb;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition:
+            width 0.15s ease,
+            height 0.15s ease,
+            background 0.2s ease,
+            border-color 0.2s ease;
+        z-index: 10000;
+        background-color: #000d0b;
+    }
 
     /* Click Fill Animation */
     .cursor-ring.clicking {
@@ -56,18 +74,18 @@ import './global.css'
     }
 </style>
 <script>
-    const ring = document.querySelector(".cursor-ring");
+    const ring = document.querySelector('.cursor-ring');
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener('mousemove', (e) => {
         ring!.style.left = `${e.clientX}px`;
         ring!.style.top = `${e.clientY}px`;
     });
 
-    document.addEventListener("mousedown", () => {
-        ring?.classList.add("clicking");
+    document.addEventListener('mousedown', () => {
+        ring?.classList.add('clicking');
     });
 
-    document.addEventListener("mouseup", () => {
-        ring?.classList.remove("clicking");
+    document.addEventListener('mouseup', () => {
+        ring?.classList.remove('clicking');
     });
 </script>

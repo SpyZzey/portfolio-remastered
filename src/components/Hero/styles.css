@@ -5,60 +5,79 @@
     width: 100%;
 }
 .hero {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    margin: 0 auto;
     height: 500px;
     width: 100%;
+    max-width: 1400px;
 
-    > .hero-border-right {
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        right: 0;
-        width: max(calc((100% - 800px) / 2), 250px);
-        background-color: #8c40eb;
-    }
     .hero-image {
         z-index: 2;
-
         position: absolute;
-        top: 0;
-        right: max(calc((100% - 800px) / 2), 250px);
-        transform: translateX(50%);
-        overflow: hidden;
+        right: 0;
+        bottom: 0;
         height: 500px;
         width: auto;
-        min-width: 420px;
-        > .image-border-bottom,
-        > .image-border-top {
-            position: absolute;
-            width: 300px;
-            height: 175px;
-            background-color: white;
-        }
-        > .image-border-bottom{
-            bottom: 0;
-            right: 0;
-            transform-origin: bottom right;
-            transform: rotate(-45deg) translate(50%, 50%);
-        }
-        > .image-border-top {
-            top: 0;
-            left: 0;
-            transform-origin: top left;
-            transform: rotate(-45deg) translate(-50%, -50%);
-        }
         > img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-top-right-radius: 72px;
-            border-bottom-left-radius: 72px;
+            filter: drop-shadow(0px 0px 10px rgba(19, 0, 18, 1));
             overflow: hidden;
         }
     }
 }
+.hero-title {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.hero-title > h1 {
+    font-size: 5rem;
+    color: white;
+    line-height: 4.5rem;
+    /*color: #ffe4ff;*/
+    color: #dcfaffa8;
+
+    font-size: 3rem;
+    > .highlight {
+        font-size: 5rem;
+        color: #50e5ff;
+        background: white;
+        background: linear-gradient(126deg, rgba(255, 0, 193, 1) 0%, rgba(0, 198, 255, 1) 50%);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.hero-title > h2 {
+    padding-top: 40px;
+    font-size: 2rem;
+    padding-left: 2px;
+    color: #dcfaff;
+    > .highlight {
+        color: #50e5ff;
+    }
+}
+
+.text-cycle {
+    display: inline-block;
+    min-width: 8ch;
+}
+
+.cycle-item {
+    display: inline-block;
+    color: #50e5ff;
+    border-right: 2px solid currentColor;
+    padding-right: 2px;
+    white-space: nowrap;
+    animation: caret-blink 0.8s steps(1, end) infinite;
+}
+
 .action-banner {
     --mouse-x: 0px;
     --mouse-y: 0px;
@@ -96,7 +115,8 @@
         background-color: #029e8c;
         box-shadow: 5px 5px 0px 5px rgb(1, 84, 74);
     }
-    > .action-banner-step.step-2 {z-index: 20;
+    > .action-banner-step.step-2 {
+        z-index: 20;
         /* 2. Give Step 2 a middle Z position */
         --z-pos: 20px;
         --speed: 1;
@@ -106,7 +126,8 @@
         left: 30px;
         animation-delay: calc(1s);
     }
-    > .action-banner-step.step-3 {z-index: 30;
+    > .action-banner-step.step-3 {
+        z-index: 30;
         /* 2. Give Step 3 the highest Z position */
         --z-pos: 30px;
         --speed: 2;
@@ -115,6 +136,27 @@
         top: 100px;
         left: 60px;
         animation-delay: calc(1.5s);
+    }
+}
+.whiggly-line {
+    pointer-events: none;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1200px) {
+    .whiggly-line {
+        transform-origin: top left;
+        rotate: -60deg;
+        top: 300px;
+        left: -20px;
+        height: 600px;
+        width: 600px;
     }
 }
 
@@ -135,13 +177,12 @@
 }
 @media screen and (max-width: 600px) {
     .hero {
-        >.hero-image {
+        > .hero-image {
             right: 150px;
         }
         > .hero-border-right {
             width: 150px;
         }
-
     }
     .action-banner {
         top: 350px;
@@ -151,17 +192,6 @@
             width: 200px;
         }
     }
-}
-
-
-.whiggly-line {
-    z-index: -1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
 }
 
 @keyframes slide-in {
@@ -174,6 +204,12 @@
             calc(var(--mouse-x) * var(--speed)),
             calc(var(--mouse-y) * var(--speed)),
             var(--z-pos)
-    );
+        );
+    }
+}
+
+@keyframes caret-blink {
+    50% {
+        border-right-color: transparent;
     }
 }
