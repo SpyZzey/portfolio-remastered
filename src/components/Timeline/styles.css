@@ -1,0 +1,142 @@
+.timeline-section > h2 {
+    margin-bottom: 36px;
+}
+
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: #50e5ff;
+}
+
+.timeline-item {
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 68px;
+    align-items: start;
+}
+
+.timeline-item.left {
+    align-self: stretch;
+}
+
+.timeline-item.right {
+    align-self: stretch;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background: #50e5ff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(80, 229, 255, 0.2);
+}
+
+.timeline-side {
+    width: 100%;
+    display: flex;
+}
+
+.timeline-left-side {
+    justify-content: flex-end;
+}
+
+.timeline-right-side {
+    justify-content: flex-start;
+}
+
+.timeline-card {
+    width: 100%;
+    max-width: 560px;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.timeline-year {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.85rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.timeline-card > h3 {
+    font-size: 1.2rem;
+}
+
+.timeline-card > p {
+    color: #c8f8ff;
+    line-height: 1.5;
+}
+
+.timeline-image-wrap {
+    width: fit-content;
+    max-width: 200px;
+}
+
+.timeline-image {
+    width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+    display: block;
+    border: none;
+    border-radius: 0;
+}
+
+@media screen and (max-width: 900px) {
+    .timeline::before {
+        left: 20px;
+        transform: none;
+    }
+
+    .timeline-item,
+    .timeline-item.left,
+    .timeline-item.right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-self: stretch;
+        padding-left: 52px;
+        padding-right: 0;
+    }
+
+    .timeline-dot {
+        left: 13px;
+        transform: none;
+        right: auto;
+    }
+
+    .timeline-left-side,
+    .timeline-right-side {
+        justify-content: flex-start;
+    }
+
+    .timeline-side-text {
+        order: 1;
+    }
+
+    .timeline-side-image {
+        display: none;
+    }
+}

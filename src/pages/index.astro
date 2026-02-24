@@ -3,7 +3,11 @@ import Hero from '../components/Hero/Hero.jsx';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar/Navbar';
 import ProjectList from '../components/ProjectList/ProjectList';
-import SparkleBackground from '../components/SparkleBackground/SparkleBackground.jsx';
+import AboutMe from '../components/AboutMeSection/AboutMe.jsx';
+import SkillsSection from '../components/SkillsSection/Skills.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+import Spacer from '../components/Spacer/Spacer.jsx';
+import Timeline from '../components/Timeline/Timeline.jsx';
 
 // Hero to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -12,5 +16,15 @@ import SparkleBackground from '../components/SparkleBackground/SparkleBackground
 <Layout>
     <Navbar />
     <Hero client:load />
+    <Spacer height={50} />
+    <AboutMe client:load />
+    <SkillsSection client:load />
+    <Spacer height={50} />
+    <hr />
+    <Spacer height={50} />
     <ProjectList client:load />
+    <Spacer height={50} />
+    <Timeline client:only />
+    <Spacer height={100} />
+    <Footer client:load />
 </Layout>

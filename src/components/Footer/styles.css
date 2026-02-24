@@ -1,0 +1,16 @@
+footer {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c5c5c5;
+    gap: 12px;
+    > a {
+        color: inherit;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+        &:hover {
+            color: #50e5ff;
+        }
+    }
+}

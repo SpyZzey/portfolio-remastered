@@ -7,14 +7,22 @@ body {
     color: white;
 }
 .page {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     z-index: 1;
+    padding: 48px;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #333;
+    width: 1400px;
+    margin: 0 auto;
 }
 
 h1,
@@ -31,8 +39,7 @@ h1 {
     font-weight: bold;
 }
 h2 {
-    font-size: 1.125rem;
-    font-weight: bold;
+    font-size: 2rem;
 }
 h3 {
     font-size: 1rem;
@@ -43,4 +50,65 @@ h5,
 h6 {
     font-size: 0.875rem;
     font-weight: bold;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    background-color: #50e5ff;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.centered-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 40px;
+    gap: 40px;
+}
+.titled-section {
+    display: flex;
+    padding: 50px 40px;
+    gap: 40px;
+    > .titled-section-content {
+        border-left: 2px solid #50e5ff;
+        padding-left: 20px;
+        max-width: 800px;
+    }
+}
+.titled-section > h2 {
+    font-size: 2rem;
+    width: 200px;
+    max-width: 200px;
+    flex: 1 0 100px;
+    text-align: end;
+}
+
+@media screen and (max-width: 600px) {
+    .page {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .titled-section {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 12px;
+    }
+    .titled-section > h2 {
+        width: auto;
+        text-align: left;
+        flex: 0;
+    }
 }
