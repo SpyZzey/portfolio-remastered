@@ -9,8 +9,8 @@ export default function AboutMe() {
             <section className="about-me titled-section-content">
                 <p>
                     I'm Simon, a passionate software developer with a love for creating all kinds of appealing
-                    software. Currently, I live in the beautiful city of Aachen, Germany, studying Computer
-                    Science at the RWTH Aachen University.
+                    software. Currently, I live in the beautiful city of Aachen, Germany, and working as a
+                    Frontend Engineer at Amazon Web Services in Berlin.
                 </p>
                 <p>
                     When I was 11 years old, I started programming extensions for a video game called
