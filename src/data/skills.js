@@ -53,8 +53,8 @@ export const SKILLS_MAP = {
         image: '/skills/java.png',
         url: 'https://www.java.com/',
     },
-    springBoot: {
-        key: 'springBoot',
+    spring: {
+        key: 'spring',
         skill: 'Spring Boot',
         image: '/skills/spring.svg',
         url: 'https://spring.io/projects/spring-boot',
@@ -65,8 +65,8 @@ export const SKILLS_MAP = {
         image: '/skills/postgres.svg',
         url: 'https://www.postgresql.org/',
     },
-    mySql: {
-        key: 'mySql',
+    mysql: {
+        key: 'mysql',
         skill: 'MySQL',
         image: '/skills/mysql.png',
         url: 'https://www.mysql.com/',

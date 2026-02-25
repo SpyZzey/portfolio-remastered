@@ -114,6 +114,10 @@ button {
     text-align: end;
 }
 
+ul {
+    padding-left: 20px;
+}
+
 @media screen and (max-width: 767px) {
     .page {
         padding: 20px;
