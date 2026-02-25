@@ -1,10 +1,22 @@
 import Link from '../components/Link/Link';
 
-const createProject = ({ id, name, subtitle, stack, details, link, dateString, gallery, warning }) => ({
+const createProject = ({
+    id,
+    name,
+    subtitle,
+    github,
+    stack,
+    details,
+    link,
+    dateString,
+    gallery,
+    warning,
+}) => ({
     id,
     name,
     description: subtitle,
     link,
+    github: github ?? [],
     image:
         gallery && gallery.length > 0
             ? gallery[0]
@@ -41,7 +53,12 @@ export const PROJECTS = [
         id: 'portfolio-2026',
         name: 'Portfolio',
         subtitle: 'The current version of this portfolio website.',
-        github: ['https://github.com/SpyZzey/portfolio-remastered'],
+        github: [
+            {
+                url: 'https://github.com/SpyZzey/portfolio-remastered',
+                name: 'Portfolio Remastered',
+            },
+        ],
         stack: ['astro', 'react', 'typescript', 'css', 'html'],
         dateString: 'Feb 2026 - Present',
         details: (
@@ -288,8 +305,14 @@ export const PROJECTS = [
         subtitle: 'A AWS S3 inspired object storage system.',
 
         github: [
-            'https://github.com/SpyZzey/Storage-System--UserAccessLayer',
-            'https://github.com/SpyZzey/Storage-System--FileAccessLayer',
+            {
+                url: 'https://github.com/SpyZzey/Storage-System--UserAccessLayer',
+                name: 'User Access Layer',
+            },
+            {
+                url: 'https://github.com/SpyZzey/Storage-System--FileAccessLayer',
+                name: 'File Access Layer',
+            },
         ],
         stack: ['java', 'spring', 'mysql'],
         dateString: 'Oct 2022 - Nov 2022',
@@ -331,7 +354,12 @@ export const PROJECTS = [
         id: 'portfolio-2022',
         name: 'Old Portfolio',
         subtitle: 'The old version of this portfolio website.',
-        github: ['https://github.com/SpyZzey/Portfolio'],
+        github: [
+            {
+                url: 'https://github.com/SpyZzey/Portfolio',
+                name: 'Portfolio',
+            },
+        ],
         stack: ['html', 'css', 'javascript', 'php', 'mysql'],
         dateString: 'Sep 2022 - Nov 2022',
         warning: `discontinued`,
@@ -357,7 +385,13 @@ export const PROJECTS = [
         id: 'calendar',
         name: 'Calendar',
         subtitle: 'A simple calendar application.',
-        github: ['https://github.com/SpyZzey/Calendar'],
+
+        github: [
+            {
+                url: 'https://github.com/SpyZzey/Calendar',
+                name: 'Calendar',
+            },
+        ],
         stack: ['html', 'css', 'javascript', 'php', 'jquery', 'mysql'],
         dateString: 'Jun 2022 - Sep 2022',
         warning: `discontinued`,

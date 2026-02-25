@@ -111,6 +111,18 @@ export default function ProjectDetailPage({ projectId }) {
                             Try it out
                         </Link>
                     ) : null}
+                    {project.github?.map((repo) => (
+                        <Link
+                            className="project-try-link"
+                            href={repo.url}
+                            target="_blank"
+                            variant="primary"
+                            icon={<ExternalLinkIcon />}
+                            iconAlignment="right"
+                            rel="noopener noreferrer">
+                            Github: {repo.name}
+                        </Link>
+                    ))}
                 </div>
             </div>
 
