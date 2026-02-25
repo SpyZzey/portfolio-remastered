@@ -18,8 +18,10 @@ const { project } = Astro.props;
 <Layout>
     <Navbar />
     <Spacer height={80} />
-    <ProjectDetailPage
-        client:load
-        projectId={project.id}
-    />
+    <main>
+        <ProjectDetailPage
+            client:load
+            projectId={project.id}
+        />
+    </main>
 </Layout>

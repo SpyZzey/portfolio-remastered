@@ -117,7 +117,12 @@ export default function Hero() {
                 </div>
                 */}
                 <div className={'hero-image'}>
-                    <img src={profileImage.src} />
+                    <img
+                        src={profileImage.src}
+                        alt="Image of Simon Brebeck"
+                        width={421}
+                        height={500}
+                    />
                 </div>
 
                 {/*

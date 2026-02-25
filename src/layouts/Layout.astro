@@ -167,3 +167,17 @@ import { ViewTransitions } from 'astro:transitions';
     });
     */
 </script>
+<script>
+    const navbar = document.querySelector('.navbar');
+
+    // Listen for the scroll event
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            // Add the 'scrolled' class when the page is scrolled
+            navbar?.classList.add('scrolled');
+        } else {
+            // Remove the 'scrolled' class when the page is at the top
+            navbar?.classList.remove('scrolled');
+        }
+    });
+</script>

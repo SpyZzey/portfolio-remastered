@@ -16,39 +16,27 @@ import Timeline from '../components/Timeline/Timeline.jsx';
 <Layout>
     <div id="home"></div>
     <Navbar />
-    <Hero client:load />
+    <main>
+        <Hero client:load />
 
-    <div id="about-me"></div>
-    <Spacer height={50} />
-    <AboutMe client:load />
+        <div id="about-me"></div>
+        <Spacer height={50} />
+        <AboutMe client:load />
 
-    <div id="skills"></div>
-    <SkillsSection client:load />
-    <Spacer height={50} />
+        <div id="skills"></div>
+        <SkillsSection client:load />
+        <Spacer height={50} />
 
-    <hr />
+        <hr />
 
-    <div id="projects"></div>
-    <Spacer height={50} />
-    <ProjectList client:load />
+        <div id="projects"></div>
+        <Spacer height={50} />
+        <ProjectList client:load />
 
-    <div id="timeline"></div>
-    <Spacer height={50} />
-    <Timeline client:only />
+        <div id="timeline"></div>
+        <Spacer height={50} />
+        <Timeline client:only />
+    </main>
     <Spacer height={100} />
     <Footer client:load />
 </Layout>
-<script>
-    const navbar = document.querySelector('.navbar');
-
-    // Listen for the scroll event
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-            // Add the 'scrolled' class when the page is scrolled
-            navbar?.classList.add('scrolled');
-        } else {
-            // Remove the 'scrolled' class when the page is at the top
-            navbar?.classList.remove('scrolled');
-        }
-    });
-</script>

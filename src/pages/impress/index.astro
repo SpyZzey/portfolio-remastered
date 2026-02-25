@@ -8,27 +8,43 @@ import Layout from '../../layouts/Layout.astro';
     <Navbar />
 
     <Spacer height={80} />
-    <div class="page">
-        <h1>Impressum</h1>
-        <br />
-        <p>
-            <b>Address</b>
+    <main>
+        <div class="page">
+            <h1>Impressum</h1>
             <br />
-            Simon Brebeck
+            <p>
+                <b>Address</b>
+                <br />
+                Simon Brebeck
+                <br />
+                Frankenstraße 10-12
+                <br />
+                52070 Aachen
+                <br />
+                Germany
+            </p>
             <br />
-            Frankenstraße 10-12
-            <br />
-            52070 Aachen
-            <br />
-            Germany
-        </p>
-        <br />
-        <p>
-            <b>Contact</b>
-            <br />
-            E-Mail: info@simonbrebeck.de
-            <br />
-            Phone: +49 (0) 159 / 01224012
-        </p>
-    </div>
+            <p>
+                <b>Contact</b>
+                <br />
+                E-Mail: info@simonbrebeck.de
+                <br />
+                Phone: +49 (0) 159 / 01224012
+            </p>
+        </div>
+    </main>
 </Layout>
+<script>
+    const navbar = document.querySelector('.navbar');
+
+    // Listen for the scroll event
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            // Add the 'scrolled' class when the page is scrolled
+            navbar?.classList.add('scrolled');
+        } else {
+            // Remove the 'scrolled' class when the page is at the top
+            navbar?.classList.remove('scrolled');
+        }
+    });
+</script>

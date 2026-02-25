@@ -7,11 +7,13 @@ export default function Navbar() {
             <div className="navbar-content">
                 <a
                     href={'/'}
+                    aria-label="Redirect to homepage of Simon Brebeck"
                     className={'navbar-logo'}>
                     <img
                         src={logoImage.src}
                         height="40"
                         width="40"
+                        alt={'Simon Brebeck Logo'}
                     />
                 </a>
                 <div className={'navbar-links'}>
