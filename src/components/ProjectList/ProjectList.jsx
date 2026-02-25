@@ -6,6 +6,8 @@ import Spacer from '../Spacer/Spacer';
 import { PROJECTS } from '../../data/projects';
 import Button from '../Button/Button';
 
+const NAV_SOURCE_KEY = 'portfolio:project-nav-source';
+
 export default function ProjectList({ showAll = false }) {
     const [projects, setProjects] = React.useState(showAll ? PROJECTS : PROJECTS.slice(0, 3));
     // Show only the first 3 projects for now
@@ -22,6 +24,7 @@ export default function ProjectList({ showAll = false }) {
                     <ProjectCard
                         key={project.id}
                         project={project}
+                        fromHome={!showAll}
                     />
                 ))}
             </div>
@@ -39,7 +42,23 @@ export default function ProjectList({ showAll = false }) {
     );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, fromHome = false }) {
+    const projectHref = `/projects/${project.id}`;
+
+    const handleProjectClick = () => {
+        if (!fromHome) {
+            return;
+        }
+
+        const navSource = {
+            fromHome: true,
+            targetPath: projectHref,
+            createdAt: Date.now(),
+        };
+
+        window.sessionStorage.setItem(NAV_SOURCE_KEY, JSON.stringify(navSource));
+    };
+
     return (
         <ReactParallaxTilt
             tiltReverse={true}
@@ -47,7 +66,8 @@ function ProjectCard({ project }) {
             tiltMaxAngleY={5}>
             <a
                 className={'project'}
-                href={`/projects/${project.id}`}
+                href={projectHref}
+                onClick={handleProjectClick}
                 style={{ viewTransitionName: `project-card-${project.id}` }}>
                 <img src={project.image} />
                 <div className="project-info">

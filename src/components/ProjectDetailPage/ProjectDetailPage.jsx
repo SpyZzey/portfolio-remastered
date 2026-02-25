@@ -1,15 +1,52 @@
 import { ArrowLeftIcon } from 'lucide-react';
+import React from 'react';
+import { navigate } from 'astro:transitions/client';
 import Link from '../Link/Link';
 import { SkillTag } from '../SkillsSection/Skills';
 import { SKILLS_MAP } from '../../data/skills';
 import './styles.css';
 
+const NAV_SOURCE_KEY = 'portfolio:project-nav-source';
+const NAV_SOURCE_TTL_MS = 2 * 60 * 1000;
+
 export default function ProjectDetailPage({ project }) {
-    const handleBackHomeClick = (event) => {
-        if (window.history.length > 1) {
-            event.preventDefault();
-            window.history.back();
+    const isFromHomeRef = React.useRef(false);
+
+    React.useEffect(() => {
+        const storedValue = window.sessionStorage.getItem(NAV_SOURCE_KEY);
+
+        if (!storedValue) {
+            return;
         }
+
+        let navSource = null;
+
+        try {
+            navSource = JSON.parse(storedValue);
+        } catch {
+            window.sessionStorage.removeItem(NAV_SOURCE_KEY);
+            return;
+        }
+
+        const isFresh =
+            typeof navSource.createdAt === 'number' && Date.now() - navSource.createdAt <= NAV_SOURCE_TTL_MS;
+        const isMatchingPath = navSource.targetPath === window.location.pathname;
+        const isFromHome = navSource.fromHome === true && isFresh && isMatchingPath;
+
+        isFromHomeRef.current = isFromHome;
+
+        window.sessionStorage.removeItem(NAV_SOURCE_KEY);
+    }, []);
+
+    const handleBackHomeClick = (event) => {
+        event.preventDefault();
+
+        if (isFromHomeRef.current && window.history.length > 1) {
+            window.history.back();
+            return;
+        }
+
+        navigate('/');
     };
 
     return (
