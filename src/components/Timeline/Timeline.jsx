@@ -7,47 +7,48 @@ const DEFAULT_ENTRIES = [
         title: 'Amazon Web Services',
         description:
             'Currently working as a Frontend Engineer at AWS, working on the Cloudscape Design System to create consistent and accessible user interfaces across AWS products.',
-        month: 'October',
-        year: '2025',
+        dateString: 'Oct 2025 - present',
         image: '/timeline/aws.webp',
     },
     {
-        title: 'WorldSkills Germany',
-        description:
-            'Represented the organization as a competitor at WorldSkills 2024, demonstrating high-level technical skills and performance under pressure in a global competitive environment.',
-        month: 'September',
-        year: '2024',
-        image: '/timeline/worldskills.png',
+        title: 'EuroSkills Herning 2025',
+        description: `Represented Germany as a competitor at EuroSkills Herning 2025
+             in Software Applications Development, 
+             winning the gold medal in Speed Programming and placing 2nd in Software Applications Development.`,
+        dateString: 'September 2025',
+        image: '/timeline/euroskills_herning_2025.png',
+    },
+    {
+        title: 'WorldSkills Lyon 2024',
+        description: `Represented Germany as a competitor at WorldSkills Lyon 2024 in Software Applications Development, 
+            winning the silver medal in Speed Programming and a Medallion of Excellence in Software Applications Development.`,
+        dateString: 'September 2024',
+        image: '/timeline/worldskills_lyon_2024.png',
     },
     {
         title: 'SAP SE',
-        description:
-            'Gained professional industry experience through an internship and subsequent working student position, contributing to enterprise-level software projects and team workflows.',
-        month: 'September',
-        year: '2023',
+        description: `Worked as a Software Development Intern at SAP SE,
+         later transitioning to a working student role, planning, designing, and implementing an internal tool using React, SAP CAP with Node.js and HANA Cloud`,
+        dateString: 'Sep 2023 - Sep 2024',
         image: '/timeline/sap.png',
     },
     {
         title: 'RWTH Aachen University',
-        description: 'Began undergraduate studies in Computer Science',
-        month: 'September',
-        year: '2021',
+        description: `Completed a Bachelor's degree in Computer Science.`,
+        dateString: 'Sep 2021 - Sep 2025',
         image: '/timeline/uni_aachen.png',
     },
     {
         title: 'University of Cologne',
-        description:
-            'Enrolled in Junior Studies while still in high school, gaining early exposure to university-level coursework and academic research methodologies.',
-        month: 'April',
-        year: '2019',
+        description: `Enrolled in Junior Studies while still in high school.`,
+        dateString: 'April 2019 - Sep 2020',
         image: '/timeline/uni_cologne.png',
     },
     {
         title: 'Silverberg-Gymnasium Bedburg',
-        description:
-            'Completed secondary education (Abitur) with a focus on core academic subjects, preparing for higher education in STEM fields.',
-        month: 'September',
-        year: '2013',
+        description: `Completed secondary education (Abitur) with a focus on mathematics and physics, 
+        graduating with honors in mathematics, physics, computer science, and philosophy`,
+        dateString: 'Sep 2013 - Jul 2021',
         image: '/timeline/high-school.png',
     },
 ];
@@ -64,7 +65,7 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                 {entries.map((entry, index) => {
                     const sideClass = index % 2 === 0 ? 'left' : 'right';
                     const leftIsText = sideClass === 'left';
-                    const dateLabel = entry.yearMonth || [entry.month, entry.year].filter(Boolean).join(' ');
+                    const dateLabel = entry.dateString ? entry.dateString : null;
                     const textContent = (
                         <div className="timeline-card timeline-text-card">
                             {dateLabel && <span className="timeline-year">{dateLabel}</span>}
