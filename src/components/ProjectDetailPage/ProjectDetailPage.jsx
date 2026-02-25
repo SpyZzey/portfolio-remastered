@@ -1,16 +1,24 @@
-import { ArrowLeftIcon } from 'lucide-react';
-import React from 'react';
+import { ArrowLeftIcon, ExternalLinkIcon } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { navigate } from 'astro:transitions/client';
 import Link from '../Link/Link';
 import { SkillTag } from '../SkillsSection/Skills';
 import { SKILLS_MAP } from '../../data/skills';
 import './styles.css';
+import { PROJECTS } from '../../data/projects';
+import 'photoswipe/dist/photoswipe.css';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import Masonry from 'react-masonry-css';
 
 const NAV_SOURCE_KEY = 'portfolio:project-nav-source';
 const NAV_SOURCE_TTL_MS = 2 * 60 * 1000;
 
-export default function ProjectDetailPage({ project }) {
+export default function ProjectDetailPage({ projectId }) {
+    const project = React.useMemo(() => {
+        return PROJECTS.find((p) => p.id === projectId);
+    }, [projectId]);
     const isFromHomeRef = React.useRef(false);
+    const isProjectListExpandedRef = React.useRef(false);
 
     React.useEffect(() => {
         const storedValue = window.sessionStorage.getItem(NAV_SOURCE_KEY);
@@ -32,8 +40,16 @@ export default function ProjectDetailPage({ project }) {
             typeof navSource.createdAt === 'number' && Date.now() - navSource.createdAt <= NAV_SOURCE_TTL_MS;
         const isMatchingPath = navSource.targetPath === window.location.pathname;
         const isFromHome = navSource.fromHome === true && isFresh && isMatchingPath;
+        const isProjectListExpanded = navSource.expanded === true;
+        console.log('Navigation source data:', {
+            isFresh,
+            isMatchingPath,
+            isFromHome,
+            isProjectListExpanded,
+        });
 
         isFromHomeRef.current = isFromHome;
+        isProjectListExpandedRef.current = isProjectListExpanded;
 
         window.sessionStorage.removeItem(NAV_SOURCE_KEY);
     }, []);
@@ -42,6 +58,16 @@ export default function ProjectDetailPage({ project }) {
         event.preventDefault();
 
         if (isFromHomeRef.current && window.history.length > 1) {
+            console.log(isProjectListExpandedRef.current);
+            sessionStorage.setItem(
+                'portfolio:project-list-state',
+                JSON.stringify({
+                    expanded: isProjectListExpandedRef.current,
+                }),
+            );
+            console.log('Going back to home, set project list state in sessionStorage:', {
+                expanded: isProjectListExpandedRef.current,
+            });
             window.history.back();
             return;
         }
@@ -61,11 +87,57 @@ export default function ProjectDetailPage({ project }) {
                 />
 
                 <div className="project-hero-content">
-                    <span>{project.dateString}</span>
-                    <h1>{project.name}</h1>
+                    <div className="row">
+                        <span>{project.dateString}</span>
+
+                        {project.warning ? <p className="project-warning">{project.warning}</p> : null}
+                    </div>
+                    <span className="space-between">
+                        <h1>{project.name}</h1>
+                    </span>
                     <h2>{project.description}</h2>
                 </div>
 
+                <div className="row">
+                    {project.link ? (
+                        <Link
+                            className="project-try-link"
+                            href={project.link}
+                            target="_blank"
+                            variant="button"
+                            icon={<ExternalLinkIcon />}
+                            iconAlignment="right"
+                            rel="noopener noreferrer">
+                            Try it out
+                        </Link>
+                    ) : null}
+                </div>
+            </div>
+
+            {/*
+            <section
+                className="project-hero"
+                style={{ viewTransitionName: `project-card-${project.id}` }}>
+                <Gallery>
+                    <Item
+                        original={project.image.src}
+                        thumbnail={project.image.src}
+                        width={project.image.width}
+                        height={project.image.height}
+                        title={`${project.name} preview`}>
+                        {({ ref, open }) => (
+                            <img
+                                ref={ref}
+                                onClick={open}
+                                src={project.image.src}
+                                alt={project.name}
+                            />
+                        )}
+                    </Item>
+                </Gallery>
+            </section>
+*/}
+            <section>
                 <ul className="tech-stack">
                     {project.techStack.map((skillKey) => {
                         const skill = SKILLS_MAP[skillKey];
@@ -85,33 +157,42 @@ export default function ProjectDetailPage({ project }) {
                         );
                     })}
                 </ul>
-            </div>
-
-            <section
-                className="project-hero"
-                style={{ viewTransitionName: `project-card-${project.id}` }}>
-                <img
-                    src={project.image}
-                    alt={project.name}
-                />
             </section>
+            <hr />
 
-            <section className="detail-section">
+            <section className="detail-section overview-section">
                 <h2>Overview</h2>
-                <p>{project.fullDescription}</p>
+                <div>{project.fullDescription}</div>
             </section>
 
-            <section className="detail-section">
+            <section className="detail-section gallery-section">
                 <h2>Gallery</h2>
-                <div className="gallery-grid">
-                    {project.gallery.map((image, index) => (
-                        <img
-                            key={`${project.id}-${index}`}
-                            src={image}
-                            alt={`${project.name} preview ${index + 1}`}
-                        />
-                    ))}
-                </div>
+
+                <Gallery>
+                    <Masonry
+                        breakpointCols={3}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column">
+                        {project.gallery.map((image, index) => (
+                            <Item
+                                key={index}
+                                original={image.src}
+                                thumbnail={image.src}
+                                width={image.width}
+                                height={image.height}
+                                title={`${project.name} screenshot ${index + 1}`}>
+                                {({ ref, open }) => (
+                                    <img
+                                        ref={ref}
+                                        onClick={open}
+                                        src={image.src}
+                                        alt={image.alt}
+                                    />
+                                )}
+                            </Item>
+                        ))}
+                    </Masonry>
+                </Gallery>
             </section>
         </main>
     );

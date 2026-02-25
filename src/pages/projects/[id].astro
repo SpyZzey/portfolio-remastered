@@ -20,6 +20,6 @@ const { project } = Astro.props;
     <Spacer height={80} />
     <ProjectDetailPage
         client:load
-        project={project}
+        projectId={project.id}
     />
 </Layout>
