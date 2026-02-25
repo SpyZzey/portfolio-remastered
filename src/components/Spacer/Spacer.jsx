@@ -1,3 +1,8 @@
-export default function Spacer({ height }) {
-    return <div style={{ height: `${height}px` }} />;
+export default function Spacer({ id = '', height }) {
+    return (
+        <div
+            id={id || undefined}
+            style={{ height: `${height}px` }}
+        />
+    );
 }

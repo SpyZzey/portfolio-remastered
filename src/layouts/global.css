@@ -5,7 +5,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #000d0b;
     color: white;
+    scroll-behavior: smooth;
 }
+
 .page {
     max-width: 1400px;
     margin: 0 auto;
@@ -35,7 +37,7 @@ body {
 hr {
     border: none;
     border-top: 1px solid #333;
-    width: 1400px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 

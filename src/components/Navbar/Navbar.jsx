@@ -14,10 +14,9 @@ export default function Navbar() {
                 />
             </a>
             <div className={'navbar-links'}>
-                <a href={'#'}>Home</a>
-                <a href={'#'}>About</a>
-                <a href={'/'}>Projects</a>
-                <a href={'#'}>Contact</a>
+                <a href={'/#about-me'}>About</a>
+                <a href={'/#projects'}>Projects</a>
+                <a href={'/#timeline'}>Timeline</a>
             </div>
         </nav>
     );

@@ -30,7 +30,7 @@
 .hero-title {
     position: absolute;
     top: 150px;
-    left: 150px;
+    left: 8vw;
     font-weight: bold;
     z-index: 10;
 }
@@ -161,11 +161,30 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .hero-title {
+        top: 120px;
+        left: 8vw;
+    }
     .action-banner {
         top: 250px;
     }
 }
 @media screen and (max-width: 1000px) {
+    .hero-title {
+        top: auto;
+        left: 20px;
+        bottom: 20px;
+        > h1 {
+            font-size: 1.5rem;
+            line-height: 2.5rem;
+            > .highlight {
+                font-size: 2.5rem;
+            }
+        }
+        > h2 {
+            font-size: 1.5rem;
+        }
+    }
     .action-banner {
         top: 350px;
         left: 20px;
@@ -176,12 +195,24 @@
     }
 }
 @media screen and (max-width: 600px) {
-    .hero {
-        > .hero-image {
-            right: 150px;
-        }
-        > .hero-border-right {
-            width: 150px;
+    .hero-title {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        padding-left: 20px;
+        padding-bottom: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0); /* No background initially */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: background 0.3s ease; /* Smooth transition when changing background */
+        background: rgba(0, 0, 0, 0.5); /* Change to desired background when scrolled */
+        border-top: 2px solid rgba(255, 255, 255, 0.1);
+        > h2 {
+            padding-top: 8px;
         }
     }
     .action-banner {
