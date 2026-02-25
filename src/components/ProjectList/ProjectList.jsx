@@ -6,36 +6,19 @@ import Spacer from '../Spacer/Spacer';
 import { PROJECTS } from '../../data/projects';
 import Button from '../Button/Button';
 
-const NAV_SOURCE_KEY = 'portfolio:project-nav-source';
-
 export default function ProjectList({ showAll = false }) {
     const [projects, setProjects] = React.useState(showAll ? PROJECTS : PROJECTS.slice(0, 3));
-    const [expanded, setExpanded] = React.useState(showAll);
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+
+    useEffect(() => {
+        if (hash === '#projects') {
+            setProjects(PROJECTS);
+        }
+    }, [hash]);
 
     const onShowMoreProjects = () => {
         setProjects(PROJECTS);
-        setExpanded(true);
     };
-
-    useLayoutEffect(() => {
-        const storedValue = window.sessionStorage.getItem('portfolio:project-list-state');
-
-        if (storedValue) {
-            try {
-                const state = JSON.parse(storedValue);
-                if (state && state.expanded === true) {
-                    onShowMoreProjects();
-
-                    setTimeout(() => {
-                        // We need a delay to fix react's updating the UI multiple times in strict mode in development.
-                        window.sessionStorage.removeItem('portfolio:project-list-state');
-                    }, 500);
-                }
-            } catch (e) {
-                console.error('Failed to parse project list state:', e);
-            }
-        }
-    }, []);
 
     return (
         <div className={'page projects'}>
@@ -46,7 +29,6 @@ export default function ProjectList({ showAll = false }) {
                         key={project.id}
                         project={project}
                         fromHome={!showAll}
-                        expanded={expanded}
                     />
                 ))}
             </div>
@@ -59,6 +41,13 @@ export default function ProjectList({ showAll = false }) {
                         onClick={onShowMoreProjects}
                     />
                 )}
+                {showAll && projects.length > 3 ? (
+                    <Button
+                        text="Show less"
+                        variant="secondary"
+                        onClick={() => setProjects(PROJECTS.slice(0, 3))}
+                    />
+                ) : null}
             </div>
         </div>
     );
@@ -66,21 +55,6 @@ export default function ProjectList({ showAll = false }) {
 
 function ProjectCard({ project, fromHome = false, expanded = false }) {
     const projectHref = `/projects/${project.id}`;
-
-    const handleProjectClick = () => {
-        if (!fromHome) {
-            return;
-        }
-
-        const navSource = {
-            fromHome: true,
-            targetPath: projectHref,
-            createdAt: Date.now(),
-            expanded: expanded,
-        };
-
-        window.sessionStorage.setItem(NAV_SOURCE_KEY, JSON.stringify(navSource));
-    };
 
     return (
         <ReactParallaxTilt
@@ -90,7 +64,6 @@ function ProjectCard({ project, fromHome = false, expanded = false }) {
             <a
                 className={'project'}
                 href={projectHref}
-                onClick={handleProjectClick}
                 style={{ viewTransitionName: `project-card-${project.id}` }}>
                 <img
                     src={project.image.src}

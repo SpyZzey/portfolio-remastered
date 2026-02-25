@@ -17,63 +17,6 @@ export default function ProjectDetailPage({ projectId }) {
     const project = React.useMemo(() => {
         return PROJECTS.find((p) => p.id === projectId);
     }, [projectId]);
-    const isFromHomeRef = React.useRef(false);
-    const isProjectListExpandedRef = React.useRef(false);
-
-    React.useEffect(() => {
-        const storedValue = window.sessionStorage.getItem(NAV_SOURCE_KEY);
-
-        if (!storedValue) {
-            return;
-        }
-
-        let navSource = null;
-
-        try {
-            navSource = JSON.parse(storedValue);
-        } catch {
-            window.sessionStorage.removeItem(NAV_SOURCE_KEY);
-            return;
-        }
-
-        const isFresh =
-            typeof navSource.createdAt === 'number' && Date.now() - navSource.createdAt <= NAV_SOURCE_TTL_MS;
-        const isMatchingPath = navSource.targetPath === window.location.pathname;
-        const isFromHome = navSource.fromHome === true && isFresh && isMatchingPath;
-        const isProjectListExpanded = navSource.expanded === true;
-        console.log('Navigation source data:', {
-            isFresh,
-            isMatchingPath,
-            isFromHome,
-            isProjectListExpanded,
-        });
-
-        isFromHomeRef.current = isFromHome;
-        isProjectListExpandedRef.current = isProjectListExpanded;
-
-        window.sessionStorage.removeItem(NAV_SOURCE_KEY);
-    }, []);
-
-    const handleBackHomeClick = (event) => {
-        event.preventDefault();
-
-        if (isFromHomeRef.current && window.history.length > 1) {
-            console.log(isProjectListExpandedRef.current);
-            sessionStorage.setItem(
-                'portfolio:project-list-state',
-                JSON.stringify({
-                    expanded: isProjectListExpandedRef.current,
-                }),
-            );
-            console.log('Going back to home, set project list state in sessionStorage:', {
-                expanded: isProjectListExpandedRef.current,
-            });
-            window.history.back();
-            return;
-        }
-
-        navigate('/');
-    };
 
     return (
         <main className="page project-detail">
@@ -82,8 +25,7 @@ export default function ProjectDetailPage({ projectId }) {
                     id="back-home"
                     icon={<ArrowLeftIcon />}
                     text="Back to home"
-                    href="/"
-                    onClick={handleBackHomeClick}
+                    href="/#projects"
                 />
 
                 <div className="project-hero-content">
