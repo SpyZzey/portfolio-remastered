@@ -2,25 +2,25 @@ export const SKILLS_MAP = {
     html: {
         key: 'html',
         skill: 'HTML',
-        image: '/skills/html.png',
+        image: '/skills/html.webp',
         url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
     },
     css: {
         key: 'css',
         skill: 'CSS',
-        image: '/skills/css.png',
+        image: '/skills/css.webp',
         url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
     },
     javascript: {
         key: 'javascript',
         skill: 'JavaScript',
-        image: '/skills/javascript.png',
+        image: '/skills/javascript.webp',
         url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
     },
     typescript: {
         key: 'typescript',
         skill: 'TypeScript',
-        image: '/skills/typescript.png',
+        image: '/skills/typescript.webp',
         url: 'https://www.typescriptlang.org/',
     },
     react: {
@@ -32,7 +32,7 @@ export const SKILLS_MAP = {
     angular: {
         key: 'angular',
         skill: 'Angular',
-        image: '/skills/angular.png',
+        image: '/skills/angular.webp',
         url: 'https://angular.io/',
     },
     vite: {
@@ -50,7 +50,7 @@ export const SKILLS_MAP = {
     java: {
         key: 'java',
         skill: 'Java',
-        image: '/skills/java.png',
+        image: '/skills/java.webp',
         url: 'https://www.java.com/',
     },
     spring: {
@@ -68,7 +68,7 @@ export const SKILLS_MAP = {
     mysql: {
         key: 'mysql',
         skill: 'MySQL',
-        image: '/skills/mysql.png',
+        image: '/skills/mysql.webp',
         url: 'https://www.mysql.com/',
     },
     supabase: {

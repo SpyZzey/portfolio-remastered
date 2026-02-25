@@ -1,9 +1,9 @@
 import './styles.css';
-import profileImage from '../../assets/profile.png';
+import profileImage from '../../assets/profile.webp';
 import { useEffect, useRef, useState } from 'react';
 import SparkleBackground from '../SparkleBackground/SparkleBackground';
 
-const CYCLE_ITEMS = ['design.', 'develop.', 'simplify.'];
+const CYCLE_ITEMS = ['develop.', 'design.', 'simplify.'];
 
 export default function Hero() {
     const bannerRef = useRef(null);

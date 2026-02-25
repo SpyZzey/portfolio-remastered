@@ -76,13 +76,13 @@ export const PROJECTS = [
         ),
         gallery: [
             {
-                src: `/projects/portfolio-2026/portfolio_overview.png`,
+                src: `/projects/portfolio-2026/portfolio_overview.webp`,
                 alt: `portfolio current screenshot 1`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/portfolio-2026/portfolio_full.png`,
+                src: `/projects/portfolio-2026/portfolio_full.webp`,
                 alt: `portfolio current screenshot 2`,
                 width: 1905,
                 height: 3869,
@@ -124,57 +124,50 @@ export const PROJECTS = [
         ),
         gallery: [
             {
-                src: `/projects/toolwriter/light_toolwriter_2.png`,
+                src: `/projects/toolwriter/light_toolwriter_2.webp`,
                 alt: `toolwriter screenshot 1`,
                 width: 1920,
                 height: 911,
             },
 
             {
-                src: `/projects/toolwriter/light_toolwriter_0.png`,
+                src: `/projects/toolwriter/light_toolwriter_0.webp`,
                 alt: `toolwriter screenshot 2`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/toolwriter/light_toolwriter_1.png`,
+                src: `/projects/toolwriter/light_toolwriter_1.webp`,
                 alt: `toolwriter screenshot 3`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/toolwriter/light_toolwriter_2.png`,
-                alt: `toolwriter screenshot 4`,
-                width: 1920,
-                height: 911,
-            },
-
-            {
-                src: `/projects/toolwriter/light_toolwriter_3.png`,
+                src: `/projects/toolwriter/light_toolwriter_3.webp`,
                 alt: `toolwriter screenshot 5`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/toolwriter/dark_toolwriter_0.png`,
+                src: `/projects/toolwriter/dark_toolwriter_0.webp`,
                 alt: `toolwriter screenshot 6`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/toolwriter/dark_toolwriter_1.png`,
+                src: `/projects/toolwriter/dark_toolwriter_1.webp`,
                 alt: `toolwriter screenshot 7`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/toolwriter/dark_toolwriter_2.png`,
+                src: `/projects/toolwriter/dark_toolwriter_2.webp`,
                 alt: `toolwriter screenshot 8`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/toolwriter/dark_toolwriter_3.png`,
+                src: `/projects/toolwriter/dark_toolwriter_3.webp`,
                 alt: `toolwriter screenshot 9`,
                 width: 1920,
                 height: 911,
@@ -208,37 +201,37 @@ export const PROJECTS = [
         ),
         gallery: [
             {
-                src: `/projects/quirium/gestalt_1.png`,
+                src: `/projects/quirium/gestalt_1.webp`,
                 alt: `quirium screenshot 1`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/quirium/gestalt_2.png`,
+                src: `/projects/quirium/gestalt_2.webp`,
                 alt: `quirium screenshot 2`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/quirium/gestalt_3.png`,
+                src: `/projects/quirium/gestalt_3.webp`,
                 alt: `quirium screenshot 3`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/quirium/gestalt_4.png`,
+                src: `/projects/quirium/gestalt_4.webp`,
                 alt: `quirium screenshot 4`,
                 width: 1920,
                 height: 911,
             },
             {
-                src: `/projects/quirium/gestalt_5.png`,
+                src: `/projects/quirium/gestalt_5.webp`,
                 alt: `quirium screenshot 5`,
                 width: 1170,
                 height: 2532,
             },
             {
-                src: `/projects/quirium/gestalt_6.png`,
+                src: `/projects/quirium/gestalt_6.webp`,
                 alt: `quirium screenshot 6`,
                 width: 1170,
                 height: 2532,
