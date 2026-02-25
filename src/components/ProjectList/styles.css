@@ -12,6 +12,9 @@
 }
 
 .project {
+    color: white;
+    text-decoration: none;
+    height: 100%;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -61,6 +64,7 @@
 @media screen and (max-width: 767px) {
     .project-list {
         display: block;
+        margin-top: 12px;
     }
     .project {
         margin-bottom: 24px;

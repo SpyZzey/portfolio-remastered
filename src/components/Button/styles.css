@@ -1,0 +1,93 @@
+.ui-button {
+    appearance: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1;
+    transition:
+        transform 0.15s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.ui-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.ui-button:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+.ui-button:not(:disabled):active {
+    transform: translateY(0);
+}
+
+.ui-button--primary {
+    background-color: #50e5ff;
+    color: #000d0b;
+}
+
+.ui-button--secondary {
+    background-color: rgba(80, 229, 255, 0.15);
+    color: #dcfaff;
+}
+
+.ui-button--ghost {
+    background-color: transparent;
+    color: #dcfaff;
+    border: 1px solid rgba(80, 229, 255, 0.5);
+}
+
+.ui-button--sm {
+    font-size: 0.875rem;
+    min-height: 34px;
+    padding: 8px 12px;
+}
+
+.ui-button--md {
+    font-size: 1rem;
+    min-height: 40px;
+    padding: 10px 16px;
+}
+
+.ui-button--lg {
+    font-size: 1.125rem;
+    min-height: 46px;
+    padding: 12px 20px;
+}
+
+.ui-button--full {
+    width: 100%;
+}
+
+.ui-button__label {
+    display: inline-flex;
+    align-items: center;
+}
+
+.ui-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.ui-button__icon-svg {
+    width: 1.1em;
+    height: 1.1em;
+    display: block;
+}
+
+.ui-button__icon-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

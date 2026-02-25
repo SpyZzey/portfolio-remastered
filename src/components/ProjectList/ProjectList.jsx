@@ -3,60 +3,11 @@ import React from 'react';
 import './styles.css';
 import ReactParallaxTilt from 'react-parallax-tilt';
 import Spacer from '../Spacer/Spacer';
+import { PROJECTS } from '../../data/projects';
+import Button from '../Button/Button';
 
-const PROJECTS = [
-    {
-        name: 'Project A',
-        description: 'Description of Project A',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+A',
-    },
-    {
-        name: 'Project B',
-        description: 'Description of Project B',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+B',
-    },
-    {
-        name: 'Project C',
-        description: 'Description of Project C',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+C',
-    },
-    {
-        name: 'Project D',
-        description: 'Description of Project D',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+D',
-    },
-    {
-        name: 'Project E',
-        description: 'Description of Project E',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+E',
-    },
-    {
-        name: 'Project F',
-        description: 'Description of Project F',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+F',
-    },
-    {
-        name: 'Project E',
-        description: 'Description of Project E',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+E',
-    },
-    {
-        name: 'Project F',
-        description: 'Description of Project F',
-        link: '#',
-        image: 'https://placehold.co/300x200?text=Project+F',
-    },
-];
-
-export default function ProjectList() {
-    const [projects, setProjects] = React.useState(PROJECTS.slice(0, 3));
+export default function ProjectList({ showAll = false }) {
+    const [projects, setProjects] = React.useState(showAll ? PROJECTS : PROJECTS.slice(0, 3));
     // Show only the first 3 projects for now
 
     const onShowMoreProjects = () => {
@@ -67,21 +18,22 @@ export default function ProjectList() {
         <div className={'page projects'}>
             <h2>My Projects</h2>
             <div className={'project-list'}>
-                {projects.map((project, index) => (
+                {projects.map((project) => (
                     <ProjectCard
-                        key={index}
+                        key={project.id}
                         project={project}
                     />
                 ))}
             </div>
             <Spacer height={24} />
             <div className="centered">
-                <button
-                    hidden={projects.length >= PROJECTS.length}
-                    className={'load-more'}
-                    onClick={onShowMoreProjects}>
-                    Show more
-                </button>
+                {showAll || projects.length >= PROJECTS.length ? null : (
+                    <Button
+                        text="Show more"
+                        variant="primary"
+                        onClick={onShowMoreProjects}
+                    />
+                )}
             </div>
         </div>
     );
@@ -93,7 +45,10 @@ function ProjectCard({ project }) {
             tiltReverse={true}
             tiltMaxAngleX={5}
             tiltMaxAngleY={5}>
-            <a className={'project'}>
+            <a
+                className={'project'}
+                href={`/projects/${project.id}`}
+                style={{ viewTransitionName: `project-card-${project.id}` }}>
                 <img src={project.image} />
                 <div className="project-info">
                     <h2>{project.name}</h2>

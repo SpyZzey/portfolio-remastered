@@ -34,6 +34,13 @@ h6 {
     margin: 0;
     padding: 0;
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 320ms;
+    animation-timing-function: ease;
+}
+
 h1 {
     font-size: 1.25rem;
     font-weight: bold;
@@ -93,13 +100,10 @@ button {
     text-align: end;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
     .page {
         padding: 20px;
     }
-}
-
-@media screen and (max-width: 767px) {
     .titled-section {
         display: flex;
         flex-direction: column;

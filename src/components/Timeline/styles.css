@@ -1,5 +1,5 @@
 .timeline-section > h2 {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
 }
 
 .timeline {
@@ -101,6 +101,11 @@
     display: block;
     border: none;
     border-radius: 0;
+}
+@media screen and (max-width: 767px) {
+    .timeline-section > h2 {
+        margin-bottom: 12px;
+    }
 }
 
 @media screen and (max-width: 900px) {

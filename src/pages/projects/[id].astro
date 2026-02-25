@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar/Navbar';
+import Spacer from '../../components/Spacer/Spacer';
+import { PROJECTS } from '../../data/projects';
+import ProjectDetailPage from '../../components/ProjectDetailPage/ProjectDetailPage';
+
+export function getStaticPaths() {
+    return PROJECTS.map((project) => ({
+        params: { id: project.id },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout>
+    <Navbar />
+    <Spacer height={80} />
+    <ProjectDetailPage
+        client:load
+        project={project}
+    />
+</Layout>
