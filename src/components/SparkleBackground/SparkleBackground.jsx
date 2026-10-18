@@ -123,7 +123,9 @@ const SparkleBackground = () => {
     }, [draw]); // Dependencies for useEffect: only re-run if 'draw' changes
 
     return (
-        <div id="canvas-container">
+        <div
+            id="canvas-container"
+            aria-hidden="true">
             <canvas
                 id="gridCanvas"
                 ref={canvasRef}></canvas>

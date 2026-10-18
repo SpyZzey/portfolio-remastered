@@ -4,9 +4,11 @@ export default function AboutMe() {
     // Usage: Just pass the class name you want to animate
 
     return (
-        <div className={'page titled-section'}>
-            <h2>About Me</h2>
-            <section className="about-me titled-section-content">
+        <section
+            className={'page titled-section'}
+            aria-labelledby="about-me-heading">
+            <h2 id="about-me-heading">About Me</h2>
+            <div className="about-me titled-section-content">
                 <p>
                     I'm Simon, a passionate software developer with a love for creating all kinds of appealing
                     software. Currently, I live in the beautiful city of Aachen, Germany, and working as a
@@ -24,7 +26,7 @@ export default function AboutMe() {
                     much I could do with it. Nowadays, I am working on my own projects and learning new
                     technologies like Spring Boot. See my skills below.
                 </p>
-            </section>
-        </div>
+            </div>
+        </section>
     );
 }

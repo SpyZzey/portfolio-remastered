@@ -3,6 +3,8 @@
     flex-wrap: wrap;
     gap: 8px;
     max-width: 600px;
+    list-style: none;
+    padding: 0;
 }
 
 a.skill-tag {
@@ -22,7 +24,12 @@ a.skill-tag {
         width: 20px;
         height: auto;
     }
-    &:hover {
+    &:focus-visible {
+        outline: 2px solid #50e5ff;
+        outline-offset: 2px;
+    }
+    &:hover,
+    &:focus-visible {
         background-color: hsla(0, 0%, 100%, 0.137);
         color: white;
         transition:
@@ -41,7 +48,7 @@ a.skill-tag {
         width: auto;
         text-align: left;
     }
-    section.about-me {
+    .about-me {
         border-left: none;
         padding-left: 0;
     }

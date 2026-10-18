@@ -12,7 +12,8 @@
         background-color 0.2s ease;
 }
 
-.ui-link:hover {
+.ui-link:hover,
+.ui-link:focus-visible {
     color: #dcfaff;
 }
 
@@ -25,7 +26,8 @@
     opacity: 0.85;
 }
 
-.ui-link--subtle:hover {
+.ui-link--subtle:hover,
+.ui-link--subtle:focus-visible {
     opacity: 1;
 }
 

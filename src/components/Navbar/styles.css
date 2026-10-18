@@ -43,6 +43,9 @@
         transition: background-color 0.2s ease;
         position: relative;
         overflow: hidden;
+        &:focus-visible {
+            outline-offset: -2px;
+        }
         &:after {
             content: '';
             position: absolute;
@@ -54,7 +57,8 @@
             z-index: -1;
             transition: width 0.3s ease;
         }
-        &:hover {
+        &:hover,
+        &:focus-visible {
             background-color: rgba(2, 158, 140, 0.18);
             &:before,
             &:after {

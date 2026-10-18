@@ -2,6 +2,7 @@ import './styles.css';
 import profileImage from '../../assets/profile.webp';
 import { useEffect, useRef, useState } from 'react';
 import SparkleBackground from '../SparkleBackground/SparkleBackground';
+import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion';
 
 const CYCLE_ITEMS = ['develop.', 'design.', 'simplify.'];
 
@@ -10,6 +11,7 @@ export default function Hero() {
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [typedText, setTypedText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     // We use refs to store values that change constantly to avoid re-renders
     const targetRef = useRef({ x: 0, y: 0 });
@@ -72,6 +74,12 @@ export default function Hero() {
         const currentWord = CYCLE_ITEMS[activeItemIndex];
         let timeoutId;
 
+        // Skip the typing animation and show a static word instead
+        if (prefersReducedMotion) {
+            setTypedText(currentWord);
+            return;
+        }
+
         if (!isDeleting && typedText === currentWord) {
             timeoutId = setTimeout(() => setIsDeleting(true), 1100);
         } else if (isDeleting && typedText === '') {
@@ -89,10 +97,12 @@ export default function Hero() {
         }
 
         return () => clearTimeout(timeoutId);
-    }, [activeItemIndex, isDeleting, typedText]);
+    }, [activeItemIndex, isDeleting, typedText, prefersReducedMotion]);
 
     return (
-        <div className={'hero-container'}>
+        <section
+            className={'hero-container'}
+            aria-label="Introduction">
             <SparkleBackground />
             <div className={'hero'}>
                 <div className="hero-title">
@@ -101,8 +111,11 @@ export default function Hero() {
                         <span className={'highlight'}>Simon Brebeck</span>.
                     </h1>
                     <h2>
-                        I like to{' '}
-                        <span className="text-cycle">
+                        <span className="sr-only">I like to develop, design, and simplify.</span>
+                        <span aria-hidden="true">I like to </span>
+                        <span
+                            className="text-cycle"
+                            aria-hidden="true">
                             <span className="cycle-item">{typedText}</span>
                         </span>
                     </h2>
@@ -119,7 +132,7 @@ export default function Hero() {
                 <div className={'hero-image'}>
                     <img
                         src={profileImage.src}
-                        alt="Image of Simon Brebeck"
+                        alt="Portrait of Simon Brebeck"
                         width={421}
                         height={500}
                     />
@@ -145,6 +158,6 @@ export default function Hero() {
                 <div className={'hero-border-right'}></div>
                 */}
             </div>
-        </div>
+        </section>
     );
 }

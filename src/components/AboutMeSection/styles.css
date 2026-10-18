@@ -1,14 +1,14 @@
-section.about-me > p {
+.about-me > p {
     font-size: 1.2rem;
     line-height: 1.6;
     color: #dcfaff;
 }
-section.about-me > p + p {
+.about-me > p + p {
     margin-top: 20px;
 }
 
 @media screen and (max-width: 767px) {
-    section.about-me {
+    .about-me {
         border-left: none;
         padding-left: 0;
     }

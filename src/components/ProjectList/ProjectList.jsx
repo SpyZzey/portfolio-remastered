@@ -1,14 +1,21 @@
 'use client';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import './styles.css';
 import ReactParallaxTilt from 'react-parallax-tilt';
 import Spacer from '../Spacer/Spacer';
 import { PROJECTS } from '../../data/projects';
 import Button from '../Button/Button';
+import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion';
+
+const INITIAL_PROJECT_COUNT = 3;
 
 export default function ProjectList({ showAll = false }) {
-    const [projects, setProjects] = React.useState(showAll ? PROJECTS : PROJECTS.slice(0, 3));
+    const [projects, setProjects] = React.useState(
+        showAll ? PROJECTS : PROJECTS.slice(0, INITIAL_PROJECT_COUNT),
+    );
     const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    const cardRefs = useRef([]);
+    const focusFirstNewProject = useRef(false);
 
     useEffect(() => {
         if (hash === '#projects') {
@@ -16,17 +23,31 @@ export default function ProjectList({ showAll = false }) {
         }
     }, [hash]);
 
+    // The "Show more" button disappears once clicked, so move focus to the first newly shown project
+    useEffect(() => {
+        if (!focusFirstNewProject.current) return;
+
+        focusFirstNewProject.current = false;
+        cardRefs.current[INITIAL_PROJECT_COUNT]?.focus();
+    }, [projects]);
+
     const onShowMoreProjects = () => {
+        focusFirstNewProject.current = true;
         setProjects(PROJECTS);
     };
 
     return (
-        <div className={'page projects'}>
-            <h2>My Projects</h2>
-            <div className={'project-list'}>
-                {projects.map((project) => (
+        <section
+            className={'page projects'}
+            aria-labelledby="projects-heading">
+            <h2 id="projects-heading">My Projects</h2>
+            <div
+                id="project-list"
+                className={'project-list'}>
+                {projects.map((project, index) => (
                     <ProjectCard
                         key={project.id}
+                        ref={(element) => (cardRefs.current[index] = element)}
                         project={project}
                         fromHome={!showAll}
                     />
@@ -36,41 +57,48 @@ export default function ProjectList({ showAll = false }) {
             <div className="centered">
                 {showAll || projects.length >= PROJECTS.length ? null : (
                     <Button
-                        text="Show more"
+                        text="Show more projects"
                         variant="primary"
+                        aria-controls="project-list"
+                        aria-expanded={false}
                         onClick={onShowMoreProjects}
                     />
                 )}
-                {showAll && projects.length > 3 ? (
+                {showAll && projects.length > INITIAL_PROJECT_COUNT ? (
                     <Button
-                        text="Show less"
+                        text="Show fewer projects"
                         variant="secondary"
-                        onClick={() => setProjects(PROJECTS.slice(0, 3))}
+                        aria-controls="project-list"
+                        aria-expanded={true}
+                        onClick={() => setProjects(PROJECTS.slice(0, INITIAL_PROJECT_COUNT))}
                     />
                 ) : null}
             </div>
-        </div>
+        </section>
     );
 }
 
-function ProjectCard({ project, fromHome = false, expanded = false }) {
+function ProjectCard({ project, ref, fromHome = false, expanded = false }) {
     const projectHref = `/projects/${project.id}`;
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     return (
         <ReactParallaxTilt
+            tiltEnable={!prefersReducedMotion}
             tiltReverse={true}
             tiltMaxAngleX={5}
             tiltMaxAngleY={5}>
             <a
+                ref={ref}
                 className={'project'}
                 href={projectHref}
                 style={{ viewTransitionName: `project-card-${project.id}` }}>
                 <img
                     src={project.image.src}
-                    alt={project.name}
+                    alt=""
                 />
                 <div className="project-info">
-                    <h2>{project.name}</h2>
+                    <h3>{project.name}</h3>
                     <p>{project.description}</p>
                 </div>
             </a>

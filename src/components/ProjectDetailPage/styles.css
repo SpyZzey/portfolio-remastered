@@ -58,12 +58,30 @@
     margin-top: 24px;
 }
 
+.project-tagline {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.gallery-thumb {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 30px;
+    background: none;
+    border-radius: 8px;
+    cursor: zoom-in;
+}
+
+.my-masonry-grid .gallery-thumb img {
+    margin-bottom: 0;
+}
+
 .detail-section {
     display: flex;
     flex-direction: column;
     gap: 12px;
     border-radius: 8px;
-    background: #041310;
 }
 .project-detail hr {
     max-width: 100%;

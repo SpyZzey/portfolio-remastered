@@ -1,6 +1,8 @@
 ---
 import './global.css';
 import { ViewTransitions } from 'astro:transitions';
+
+const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
 ---
 
 <!doctype html>
@@ -95,9 +97,14 @@ import { ViewTransitions } from 'astro:transitions';
             rel="preconnect"
             href="https://fonts.googleapis.com"
         />
-        <title>Simon Brebeck - Software Developer</title>
+        <title>{title}</title>
     </head>
     <body>
+        <a
+            class="skip-link"
+            href="#main-content"
+            >Skip to main content</a
+        >
         <slot />
         <!-- <div class="cursor-ring"></div> -->
     </body>

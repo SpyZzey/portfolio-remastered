@@ -60,6 +60,7 @@ export default function Link({
 
     const target = openInNewTab ? '_blank' : props.target;
     const safeRel = openInNewTab ? (rel ?? 'noopener noreferrer') : rel;
+    const opensInNewTab = target === '_blank';
 
     return (
         <a
@@ -72,6 +73,7 @@ export default function Link({
                 <span className="ui-link__icon ui-link__icon--left">{iconNode}</span>
             )}
             {content && <span className="ui-link__label">{content}</span>}
+            {opensInNewTab && <span className="sr-only">(opens in a new tab)</span>}
             {iconNode && safeIconAlignment === 'right' && (
                 <span className="ui-link__icon ui-link__icon--right">{iconNode}</span>
             )}

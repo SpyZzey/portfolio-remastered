@@ -2,7 +2,7 @@ import { ArrowLeftIcon, ExternalLinkIcon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { navigate } from 'astro:transitions/client';
 import Link from '../Link/Link';
-import { SkillTag } from '../SkillsSection/Skills';
+import { SkillTagGroup } from '../SkillsSection/Skills';
 import { SKILLS_MAP } from '../../data/skills';
 import './styles.css';
 import { PROJECTS } from '../../data/projects';
@@ -19,7 +19,7 @@ export default function ProjectDetailPage({ projectId }) {
     }, [projectId]);
 
     return (
-        <main className="page project-detail">
+        <article className="page project-detail">
             <div className="project-detail-header">
                 <Link
                     id="back-home"
@@ -37,7 +37,7 @@ export default function ProjectDetailPage({ projectId }) {
                     <span className="space-between">
                         <h1>{project.name}</h1>
                     </span>
-                    <h2>{project.description}</h2>
+                    <p className="project-tagline">{project.description}</p>
                 </div>
 
                 <div className="row">
@@ -92,35 +92,25 @@ export default function ProjectDetailPage({ projectId }) {
             </section>
 */}
             <section>
-                <ul className="tech-stack">
-                    {project.techStack.map((skillKey) => {
-                        const skill = SKILLS_MAP[skillKey];
-
-                        if (!skill) {
-                            return null;
-                        }
-
-                        return (
-                            <li key={skillKey}>
-                                <SkillTag
-                                    image={skill.image}
-                                    skill={skill.skill}
-                                    url={skill.url}
-                                />
-                            </li>
-                        );
-                    })}
-                </ul>
+                <SkillTagGroup
+                    skills={project.techStack.map((skillKey) => SKILLS_MAP[skillKey]).filter(Boolean)}
+                    label="Tech stack"
+                    className="tech-stack"
+                />
             </section>
             <hr />
 
-            <section className="detail-section overview-section">
-                <h2>Overview</h2>
+            <section
+                className="detail-section overview-section"
+                aria-labelledby="overview-heading">
+                <h2 id="overview-heading">Overview</h2>
                 <div>{project.fullDescription}</div>
             </section>
 
-            <section className="detail-section gallery-section">
-                <h2>Gallery</h2>
+            <section
+                className="detail-section gallery-section"
+                aria-labelledby="gallery-heading">
+                <h2 id="gallery-heading">Gallery</h2>
 
                 <Gallery>
                     <Masonry
@@ -136,18 +126,23 @@ export default function ProjectDetailPage({ projectId }) {
                                 height={image.height}
                                 title={`${project.name} screenshot ${index + 1}`}>
                                 {({ ref, open }) => (
-                                    <img
-                                        ref={ref}
+                                    <button
+                                        type="button"
+                                        className="gallery-thumb"
                                         onClick={open}
-                                        src={image.src}
-                                        alt={image.alt}
-                                    />
+                                        aria-label={`Open ${image.alt} in fullscreen`}>
+                                        <img
+                                            ref={ref}
+                                            src={image.src}
+                                            alt={image.alt}
+                                        />
+                                    </button>
                                 )}
                             </Item>
                         ))}
                     </Masonry>
                 </Gallery>
             </section>
-        </main>
+        </article>
     );
 }

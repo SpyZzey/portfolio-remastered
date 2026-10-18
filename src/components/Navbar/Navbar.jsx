@@ -3,17 +3,19 @@ import logoImage from '../../assets/logo.webp';
 
 export default function Navbar() {
     return (
-        <nav className={'navbar'}>
+        <nav
+            className={'navbar'}
+            aria-label="Main">
             <div className="navbar-content">
                 <a
                     href={'/'}
-                    aria-label="Redirect to homepage of Simon Brebeck"
+                    aria-label="Simon Brebeck, home"
                     className={'navbar-logo'}>
                     <img
                         src={logoImage.src}
                         height="40"
                         width="40"
-                        alt={'Simon Brebeck Logo'}
+                        alt=""
                     />
                 </a>
                 <div className={'navbar-links'}>

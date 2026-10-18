@@ -59,9 +59,11 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
     }
 
     return (
-        <section className="page timeline-section">
-            <h2>Timeline</h2>
-            <div className="timeline">
+        <section
+            className="page timeline-section"
+            aria-labelledby="timeline-heading">
+            <h2 id="timeline-heading">Timeline</h2>
+            <ol className="timeline">
                 {entries.map((entry, index) => {
                     const sideClass = index % 2 === 0 ? 'left' : 'right';
                     const leftIsText = sideClass === 'left';
@@ -79,7 +81,7 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                             <img
                                 className="timeline-image"
                                 src={entry.image}
-                                alt={entry.title}
+                                alt=""
                             />
                         </div>
                     ) : (
@@ -87,10 +89,13 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                     );
 
                     return (
-                        <article
+                        <li
                             key={`${entry.title}-${index}`}
                             className={`timeline-item ${sideClass}`}>
-                            <div className="timeline-dot" />
+                            <div
+                                className="timeline-dot"
+                                aria-hidden="true"
+                            />
                             <div
                                 className={`timeline-side timeline-left-side ${leftIsText ? 'timeline-side-text' : 'timeline-side-image'}`}>
                                 {leftIsText ? textContent : imageContent}
@@ -99,10 +104,10 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                                 className={`timeline-side timeline-right-side ${leftIsText ? 'timeline-side-image' : 'timeline-side-text'}`}>
                                 {leftIsText ? imageContent : textContent}
                             </div>
-                        </article>
+                        </li>
                     );
                 })}
-            </div>
+            </ol>
         </section>
     );
 }
