@@ -1,10 +1,37 @@
+:root {
+    color-scheme: dark;
+
+    --color-bg: #0b0b0d;
+    --color-surface: #141417;
+    --color-surface-hover: #1a1a1e;
+    --color-border: #26262b;
+    --color-border-strong: #3a3a42;
+    --color-text: #ededef;
+    --color-text-secondary: #c4c4cc;
+    --color-text-muted: #9b9ba3;
+    --color-accent: #7aa2ff;
+    --color-accent-hover: #9bb9ff;
+    --color-accent-soft: rgba(122, 162, 255, 0.12);
+    --color-on-accent: #0b0b0d;
+    --color-danger: #ff8080;
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #000d0b;
-    color: white;
+    font-family:
+        system-ui,
+        -apple-system,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
 }
 
@@ -19,8 +46,13 @@ body {
     box-sizing: border-box;
     margin: 0;
 }
+::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-text);
+}
+
 .dimmed-text {
-    color: #aaa;
+    color: var(--color-text-muted);
 }
 
 .space-between {
@@ -36,7 +68,7 @@ body {
 
 hr {
     border: none;
-    border-top: 1px solid #333;
+    border-top: 1px solid var(--color-border);
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -49,6 +81,7 @@ h5,
 h6 {
     margin: 0;
     padding: 0;
+    letter-spacing: -0.01em;
 }
 
 ::view-transition-old(root),
@@ -85,8 +118,8 @@ button {
     background: none;
     color: inherit;
     font-family: inherit;
-    background-color: #50e5ff;
-    color: black;
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
     padding: 10px 20px;
     border-radius: 4px;
 }
@@ -103,7 +136,7 @@ button {
     padding: 50px 40px;
     gap: 40px;
     > .titled-section-content {
-        border-left: 2px solid #50e5ff;
+        border-left: 1px solid var(--color-border-strong);
         padding-left: 20px;
         max-width: 800px;
     }
@@ -158,7 +191,7 @@ ul {
 
 /* Accessibility */
 :focus-visible {
-    outline: 2px solid #50e5ff;
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
     border-radius: 4px;
 }
@@ -182,15 +215,15 @@ ul {
     z-index: 10001;
     padding: 10px 16px;
     border-radius: 6px;
-    background: #50e5ff;
-    color: #000d0b;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
     font-weight: 600;
     text-decoration: none;
     transform: translateY(-200%);
     transition: transform 0.2s ease;
     &:focus-visible {
         transform: translateY(0);
-        outline-color: white;
+        outline-color: var(--color-text);
     }
 }
 

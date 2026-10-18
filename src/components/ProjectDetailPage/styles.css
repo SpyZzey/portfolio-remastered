@@ -29,21 +29,21 @@
     width: 1px;
     height: 100%;
     min-height: 30px;
-    background-color: #1d2b29;
+    background-color: var(--color-border);
     margin: 24px 0;
 }
 .project-try-link {
     font-size: 1.1rem;
 }
 .project-warning {
-    color: #ff6b6b;
+    color: var(--color-danger);
     font-weight: bold;
 }
 
 .project-hero {
     display: flex;
     flex-direction: column;
-    background-color: #000d0b;
+    background-color: var(--color-surface);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -59,8 +59,9 @@
 }
 
 .project-tagline {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
+    color: var(--color-text-secondary);
 }
 
 .gallery-thumb {
@@ -99,7 +100,7 @@
 
 .detail-section > p {
     line-height: 1.8;
-    color: #dcfaff;
+    color: var(--color-text-secondary);
 }
 
 .tech-stack {
@@ -127,7 +128,7 @@
     border-radius: 8px;
     object-fit: cover;
     min-height: 220px;
-    border: 1px solid #1d2b29;
+    border: 1px solid var(--color-border);
 }
 
 @media screen and (max-width: 767px) {

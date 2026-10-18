@@ -2,7 +2,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #50e5ff;
+    color: var(--color-accent);
     text-decoration: none;
     font-family: inherit;
     font-weight: 600;
@@ -14,7 +14,7 @@
 
 .ui-link:hover,
 .ui-link:focus-visible {
-    color: #dcfaff;
+    color: var(--color-accent-hover);
 }
 
 .ui-link--inline {
@@ -22,7 +22,7 @@
 }
 
 .ui-link--subtle {
-    color: #dcfaff;
+    color: var(--color-text-secondary);
     opacity: 0.85;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .ui-link--button {
-    background-color: rgba(80, 229, 255, 0.16);
+    background-color: var(--color-accent-soft);
     border-radius: 6px;
     padding: 8px 12px;
 }

@@ -21,7 +21,7 @@ const SparkleBackground = () => {
             ctx.clearRect(0, 0, width, height);
 
             // 1. Draw the faint background grid
-            ctx.strokeStyle = 'rgba(120, 60, 200, 0.05)'; // Very faint purple
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)'; // Very faint neutral
             ctx.lineWidth = 1;
             ctx.beginPath();
 
@@ -49,12 +49,12 @@ const SparkleBackground = () => {
                         // Determine intensity/glow based on X position
                         // (Matches the image: brighter/more visible on the right)
                         const normalizedX = x / width;
-                        const brightness = 0.15 + normalizedX * 0.85; // 15% to 100%
+                        const brightness = 0.1 + normalizedX * 0.4; // 10% to 50%
 
-                        // Cross color - slightly blueish on the far left, shifting to bright purple
-                        const r = Math.floor(100 + 80 * normalizedX);
-                        const g = Math.floor(50 + 30 * normalizedX);
-                        const b = Math.floor(200 + 55 * normalizedX);
+                        // Cross color - neutral grey, picking up a hint of the accent blue on the right
+                        const r = Math.floor(150 - 28 * normalizedX);
+                        const g = Math.floor(155 + 7 * normalizedX);
+                        const b = Math.floor(170 + 85 * normalizedX);
 
                         const colorStr = `rgba(${r}, ${g}, ${b}, ${brightness})`;
 
@@ -62,9 +62,8 @@ const SparkleBackground = () => {
                         ctx.strokeStyle = colorStr;
                         ctx.lineWidth = 1.2;
 
-                        // Add glow effect
-                        ctx.shadowColor = colorStr;
-                        ctx.shadowBlur = 8 * brightness; // More glow on brighter ones
+                        // No glow, keep the crosses crisp and subtle
+                        ctx.shadowBlur = 0;
 
                         // Draw the cross (using + 0.5 for crisp 1px lines on canvas)
                         const cx = Math.floor(x) + 0.5;

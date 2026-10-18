@@ -3,7 +3,9 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #c5c5c5;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
     gap: 12px;
     > a {
         color: inherit;
@@ -11,7 +13,7 @@ footer {
         transition: color 0.3s ease;
         &:hover,
         &:focus-visible {
-            color: #50e5ff;
+            color: var(--color-text);
         }
     }
 }

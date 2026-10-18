@@ -21,14 +21,20 @@
 }
 
 .navbar.scrolled {
-    background: rgba(0, 0, 0, 0.7); /* Change to desired background when scrolled */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(11, 11, 13, 0.8); /* Change to desired background when scrolled */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
 }
 .navbar-logo {
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    > img {
+        /* The logo asset is purple; render it in the neutral text colour */
+        filter: grayscale(1) brightness(2.2);
+    }
 }
 .navbar-links {
     display: flex;
@@ -37,8 +43,9 @@
     margin: 0;
     padding: 0;
     > a {
-        color: white;
+        color: var(--color-text-secondary);
         text-decoration: none;
+        border-radius: 6px;
         padding: 8px 16px 12px 16px;
         transition: background-color 0.2s ease;
         position: relative;
@@ -52,21 +59,22 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 4px;
-            background: rgb(202, 76, 192);
+            height: 2px;
+            background: var(--color-accent);
             z-index: -1;
             transition: width 0.3s ease;
         }
         &:hover,
         &:focus-visible {
-            background-color: rgba(2, 158, 140, 0.18);
+            color: var(--color-text);
+            background-color: rgba(255, 255, 255, 0.05);
             &:before,
             &:after {
                 width: 100%;
             }
         }
         &:active {
-            background-color: rgba(2, 158, 140, 0.36);
+            background-color: rgba(255, 255, 255, 0.08);
             &:before,
             &:after {
                 width: 100%;
