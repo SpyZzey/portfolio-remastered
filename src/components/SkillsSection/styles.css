@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    max-width: 600px;
+    max-width: 640px;
     list-style: none;
     padding: 0;
 }
@@ -29,13 +29,21 @@ a.skill-tag {
         color 0.2s ease;
     > img {
         width: 18px;
-        height: auto;
+        height: 18px;
+        object-fit: contain;
+        /* Logos stay quiet in grey and get their colour back on hover/focus */
+        filter: grayscale(1) brightness(1.4);
+        opacity: 0.7;
         transition:
+            filter 0.25s ease,
+            opacity 0.25s ease,
             translate 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
             rotate 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     &:hover > img,
     &:focus-visible > img {
+        filter: none;
+        opacity: 1;
         translate: 0 -2px;
         rotate: -10deg;
     }
@@ -48,21 +56,5 @@ a.skill-tag {
         background-color: var(--color-surface-hover);
         border-color: var(--color-border-strong);
         color: var(--color-text);
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .page-about-me {
-        display: block;
-        padding: 20px;
-        gap: 0;
-    }
-    .page-about-me > h2 {
-        width: auto;
-        text-align: left;
-    }
-    .about-me {
-        border-left: none;
-        padding-left: 0;
     }
 }

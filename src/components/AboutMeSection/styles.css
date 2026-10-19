@@ -1,15 +1,22 @@
 .about-me > p {
-    font-size: 1.2rem;
-    line-height: 1.6;
+    max-width: 62ch;
+    font-size: 1.15rem;
+    line-height: 1.65;
     color: var(--color-text-secondary);
 }
 .about-me > p + p {
-    margin-top: 20px;
+    margin-top: 18px;
+}
+
+.about-me > .skills {
+    margin-top: 28px;
 }
 
 @media screen and (max-width: 767px) {
     .about-me {
-        border-left: none;
         padding-left: 0;
+    }
+    .about-me::before {
+        display: none;
     }
 }

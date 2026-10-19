@@ -4,13 +4,9 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar/Navbar';
 import ProjectList from '../components/ProjectList/ProjectList';
 import AboutMe from '../components/AboutMeSection/AboutMe.jsx';
-import SkillsSection from '../components/SkillsSection/Skills.jsx';
-import Footer from '../components/Footer/Footer.jsx';
+import Contact from '../components/Contact/Contact.jsx';
 import Spacer from '../components/Spacer/Spacer.jsx';
 import Timeline from '../components/Timeline/Timeline.jsx';
-
-// Hero to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
@@ -25,11 +21,9 @@ import Timeline from '../components/Timeline/Timeline.jsx';
         <Spacer height={50} />
         <AboutMe client:load />
 
-        <div id="skills"></div>
-        <SkillsSection client:load />
         <Spacer height={50} />
 
-        <hr />
+        <hr data-reveal="line" />
 
         <div id="projects"></div>
         <Spacer height={50} />
@@ -37,8 +31,13 @@ import Timeline from '../components/Timeline/Timeline.jsx';
 
         <div id="timeline"></div>
         <Spacer height={50} />
-        <Timeline client:only />
+        <Timeline />
+
+        <div id="contact"></div>
+        <Spacer height={50} />
+        <hr data-reveal="line" />
+        <Spacer height={50} />
+        <Contact />
     </main>
     <Spacer height={100} />
-    <Footer client:load />
 </Layout>

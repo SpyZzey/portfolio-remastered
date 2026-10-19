@@ -1,97 +1,121 @@
 .navbar {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 8px 36px;
+    left: 0;
+    right: 0;
     z-index: 1000;
-    width: 100%;
-    /* Default transparent background */
-    background: rgba(0, 0, 0, 0); /* No background initially */
-    transition: background 0.3s ease; /* Smooth transition when changing background */
-}
-.navbar-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 24px;
+    border-bottom: 1px solid transparent;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        translate 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar.scrolled {
-    background: rgba(12, 11, 10, 0.8); /* Change to desired background when scrolled */
+    background-color: rgba(12, 11, 10, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom-color: var(--color-border);
 }
+
+/* Slides away while scrolling down, back as soon as you scroll up or move focus into it */
+.navbar.navbar--hidden:not(:focus-within) {
+    translate: 0 -100%;
+}
+
+.navbar-content {
+    max-width: 1400px;
+    height: 64px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* ---------- Logo ---------- */
+
 .navbar-logo {
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+
     > img {
-        /* The logo asset is purple; render it in the neutral text colour */
-        filter: grayscale(1) brightness(2.2);
+        display: block;
+        transition:
+            rotate 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+            scale 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .navbar-logo:hover > img {
+        rotate: -12deg;
+        scale: 1.08;
+    }
+}
+
+/* ---------- Links ---------- */
+
 .navbar-links {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     list-style: none;
     margin: 0;
     padding: 0;
-    > a {
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        border-radius: 6px;
-        padding: 8px 16px 12px 16px;
-        transition: background-color 0.2s ease;
+
+    a {
         position: relative;
-        overflow: hidden;
-        &:focus-visible {
-            outline-offset: -2px;
-        }
-        &:after {
+        display: block;
+        padding: 8px 12px;
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        /* Thin accent line that draws in from the left */
+        &::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
+            left: 12px;
+            right: 12px;
+            bottom: 2px;
+            height: 1px;
             background: var(--color-accent);
-            z-index: -1;
-            transition: width 0.3s ease;
+            transform-origin: left;
+            scale: 0 1;
+            transition: scale 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         &:hover,
-        &:focus-visible {
+        &:focus-visible,
+        &[aria-current] {
             color: var(--color-text);
-            background-color: rgba(255, 255, 255, 0.05);
-            &:before,
-            &:after {
-                width: 100%;
-            }
-        }
-        &:active {
-            background-color: rgba(255, 255, 255, 0.08);
-            &:before,
-            &:after {
-                width: 100%;
+
+            &::after {
+                scale: 1 1;
             }
         }
     }
 }
 
 @media screen and (max-width: 767px) {
-    .navbar {
-        padding: 8px;
-        gap: 4px;
+    .navbar-content {
+        height: 56px;
+        padding: 0 20px;
     }
 
-    .navbar-content {
-        gap: 8px;
-    }
     .navbar-links {
-        gap: 0px;
+        gap: 0;
+
+        a {
+            padding: 8px 10px;
+
+            &::after {
+                left: 10px;
+                right: 10px;
+            }
+        }
     }
 }

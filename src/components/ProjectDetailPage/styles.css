@@ -1,113 +1,127 @@
-.project-detail h1 {
-    font-size: 2.5rem;
-}
-
-.project-detail h2 {
-    font-weight: 400;
-    margin: 0;
-}
-
 .project-detail {
     max-width: 1100px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 48px;
 }
 
-.project-detail-header {
+/* ---------- Header ---------- */
+
+.project-back-link {
+    margin-bottom: 24px;
+}
+
+.project-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: 48px;
+}
+
+.project-intro-text {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: flex-start;
 }
 
-.project-title {
+.project-meta {
     display: flex;
-    gap: 12px;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
 }
-.vr {
-    width: 1px;
-    height: 100%;
-    min-height: 30px;
-    background-color: var(--color-border);
-    margin: 24px 0;
-}
-.project-try-link {
-    font-size: 1.1rem;
-}
+
 .project-warning {
     color: var(--color-danger);
-    font-weight: bold;
+    font-weight: 600;
 }
 
-.project-hero {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-surface);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.project-hero img {
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
-}
-
-.project-hero-content {
-    margin-top: 24px;
+.project-detail h1 {
+    margin-top: 8px;
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
 }
 
 .project-tagline {
-    font-size: 1.5rem;
-    font-weight: 400;
+    max-width: 40ch;
+    margin-top: 12px;
     color: var(--color-text-secondary);
+    font-size: 1.15rem;
+    line-height: 1.45;
 }
 
-.gallery-thumb {
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 30px;
-    background: none;
-    border-radius: 8px;
-    cursor: zoom-in;
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
 }
 
-.my-masonry-grid .gallery-thumb img {
-    margin-bottom: 0;
+.project-intro-text > .tech-stack {
+    margin-top: 24px;
 }
+
+/* ---------- Lead image ---------- */
+
+.project-lead-image {
+    margin: 0;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    background: var(--color-surface);
+
+    > img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top center;
+    }
+}
+
+/* ---------- Sections ---------- */
 
 .detail-section {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    border-radius: 8px;
-}
-.project-detail hr {
-    max-width: 100%;
-    width: 100%;
-}
-.overview-section,
-.gallery-section {
-    margin-top: 24px;
+    gap: 20px;
 }
 
 .detail-section > h2 {
     font-size: 1.75rem;
-    font-weight: bold;
+    font-weight: 700;
 }
 
-.detail-section > p {
-    line-height: 1.8;
+.project-description {
+    max-width: 68ch;
     color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+
+    h3 {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: var(--color-text);
+        font-size: 1.1rem;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li + li {
+        margin-top: 4px;
+    }
 }
 
 .tech-stack {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     padding: 0;
     margin: 0;
 }
@@ -117,30 +131,45 @@
     padding: 0;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+/* ---------- Gallery ---------- */
+
+.gallery-thumb {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 30px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: zoom-in;
 }
 
-.gallery-grid > img {
-    width: 100%;
-    border-radius: 8px;
-    object-fit: cover;
-    min-height: 220px;
-    border: 1px solid var(--color-border);
+.my-masonry-grid .gallery-thumb img {
+    margin-bottom: 0;
+    border-radius: 0;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .gallery-thumb:hover img {
+        scale: 1.03;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .project-intro {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
 }
 
 @media screen and (max-width: 767px) {
-    .project-detail-header > h1 {
-        font-size: 2rem;
+    .project-detail {
+        gap: 40px;
     }
 
-    .project-hero > img {
-        height: 280px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    .project-back-link {
+        margin-bottom: 16px;
     }
 }

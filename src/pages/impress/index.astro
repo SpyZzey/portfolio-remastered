@@ -2,51 +2,82 @@
 import Navbar from '../../components/Navbar/Navbar';
 import Spacer from '../../components/Spacer/Spacer';
 import Layout from '../../layouts/Layout.astro';
+import { EMAIL } from '../../data/contact';
 ---
 
 <Layout title="Impressum | Simon Brebeck">
     <Navbar />
 
-    <Spacer height={80} />
+    <Spacer height={120} />
     <main
         id="main-content"
         tabindex="-1">
-        <div class="page">
+        <div class="page legal">
             <h1>Impressum</h1>
-            <br />
-            <p>
-                <b>Address</b>
-                <br />
-                Simon Brebeck
-                <br />
-                Frankenstraße 10-12
-                <br />
-                52070 Aachen
-                <br />
-                Germany
-            </p>
-            <br />
-            <p>
-                <b>Contact</b>
-                <br />
-                E-Mail: info@simonbrebeck.de
-                <br />
-                Phone: +49 (0) 159 / 01224012
-            </p>
+
+            <div class="legal-grid">
+                <section aria-labelledby="legal-address">
+                    <h2 id="legal-address">Address</h2>
+                    <address>
+                        Simon Brebeck<br />
+                        Frankenstraße 10-12<br />
+                        52070 Aachen<br />
+                        Germany
+                    </address>
+                </section>
+
+                <section aria-labelledby="legal-contact">
+                    <h2 id="legal-contact">Contact</h2>
+                    <address>
+                        E-Mail: <a href={`mailto:${EMAIL}`}>{EMAIL}</a><br />
+                        Phone: <a href="tel:+4915901224012">+49 (0) 159 / 01224012</a>
+                    </address>
+                </section>
+            </div>
         </div>
     </main>
+    <Spacer height={120} />
 </Layout>
-<script>
-    const navbar = document.querySelector('.navbar');
 
-    // Listen for the scroll event
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-            // Add the 'scrolled' class when the page is scrolled
-            navbar?.classList.add('scrolled');
-        } else {
-            // Remove the 'scrolled' class when the page is at the top
-            navbar?.classList.remove('scrolled');
-        }
-    });
-</script>
+<style>
+    .legal h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    .legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 40px;
+        max-width: 720px;
+        margin-top: 48px;
+    }
+
+    .legal h2 {
+        margin-bottom: 12px;
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    address {
+        font-style: normal;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+    }
+
+    address a {
+        color: var(--color-text);
+        text-decoration: underline;
+        text-decoration-color: var(--color-border-strong);
+        text-underline-offset: 4px;
+        transition: text-decoration-color 0.2s ease;
+    }
+
+    address a:hover,
+    address a:focus-visible {
+        text-decoration-color: var(--color-accent);
+    }
+</style>

@@ -1,0 +1,85 @@
+.contact-intro {
+    max-width: 44ch;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* The email address is the main call to action, set large */
+.contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    margin-top: 20px;
+    color: var(--color-text);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    background-image: linear-gradient(var(--color-accent), var(--color-accent));
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition:
+        color 0.2s ease,
+        background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &:hover,
+    &:focus-visible {
+        color: var(--color-accent);
+        background-size: 100% 2px;
+    }
+}
+
+.contact-email-arrow {
+    width: 0.8em;
+    height: 0.8em;
+    flex-shrink: 0;
+    transition: translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .contact-email:hover .contact-email-arrow {
+        translate: 3px -3px;
+    }
+}
+
+.contact-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    margin-top: 32px;
+    padding: 0;
+    list-style: none;
+
+    a {
+        color: var(--color-text-muted);
+        text-decoration: underline;
+        text-decoration-color: var(--color-border-strong);
+        text-underline-offset: 4px;
+        transition:
+            color 0.2s ease,
+            text-decoration-color 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-text);
+            text-decoration-color: var(--color-accent);
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* Same as About: no vertical line on small screens */
+    .contact .titled-section-content {
+        padding-left: 0;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .contact-email {
+        word-break: break-all;
+    }
+}

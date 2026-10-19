@@ -1,20 +1,5 @@
 import { useRef, useState } from 'react';
 import './styles.css';
-import { SKILLS } from '../../data/skills';
-
-export default function AboutMe() {
-    // Usage: Just pass the class name you want to animate
-
-    return (
-        <div className={'page centered'}>
-            <SkillTagGroup
-                skills={SKILLS}
-                label="Skills"
-                className="skills"
-            />
-        </div>
-    );
-}
 
 // Toolbar with a roving tabindex: only one tag is in the tab order,
 // the arrow keys (and Home/End) move focus between the tags.

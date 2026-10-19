@@ -36,13 +36,13 @@ const DEFAULT_ENTRIES = [
         title: 'RWTH Aachen University',
         description: `Completed a Bachelor's degree in Computer Science.`,
         dateString: 'Sep 2021 - Sep 2025',
-        image: '/timeline/uni_aachen.webp',
+        image: '/timeline/rwth_aachen.svg',
     },
     {
         title: 'University of Cologne',
         description: `Enrolled in Junior Studies while still in high school.`,
         dateString: 'April 2019 - Sep 2020',
-        image: '/timeline/uni_cologne.webp',
+        image: '/timeline/uni_cologne.svg',
     },
     {
         title: 'Silverberg-Gymnasium Bedburg',

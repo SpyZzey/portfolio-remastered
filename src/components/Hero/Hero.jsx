@@ -77,16 +77,8 @@ export default function Hero() {
             <div className="hero-inner">
                 <div className="hero-text">
                     <h1>
-                        <span
-                            className="hero-greeting"
-                            data-reveal="up"
-                            style={{ '--reveal-delay': '100ms' }}>
-                            Hey, I am
-                        </span>{' '}
-                        <span
-                            className="hero-name"
-                            data-reveal="up"
-                            style={{ '--reveal-delay': '200ms' }}>
+                        <span className="hero-greeting">Hey, I am</span>{' '}
+                        <span className="hero-name">
                             <span className="sr-only">{NAME}</span>
                             {/* Split into letters for the hover effect; the space stays a plain text node */}
                             <span aria-hidden="true">
@@ -104,10 +96,7 @@ export default function Hero() {
                             </span>
                         </span>
                     </h1>
-                    <p
-                        className="hero-tagline"
-                        data-reveal="up"
-                        style={{ '--reveal-delay': '350ms' }}>
+                    <p className="hero-tagline">
                         <span className="sr-only">I like to develop, design, and simplify.</span>
                         <span aria-hidden="true">I like to </span>
                         <span
@@ -121,8 +110,7 @@ export default function Hero() {
                 <div className="hero-portrait">
                     <div
                         className="hero-note"
-                        aria-hidden="true"
-                        data-reveal="note">
+                        aria-hidden="true">
                         <span className="hero-note-text">that's me!</span>
                         <svg
                             className="hero-note-arrow"
@@ -137,8 +125,6 @@ export default function Hero() {
                     <img
                         src={profileImage.src}
                         alt="Portrait of Simon Brebeck"
-                        data-reveal="rise"
-                        style={{ '--reveal-delay': '150ms' }}
                         width={421}
                         height={500}
                         fetchPriority="high"

@@ -37,6 +37,25 @@
     padding: 8px 12px;
 }
 
+.ui-link--button:hover,
+.ui-link--button:focus-visible {
+    background-color: rgba(240, 180, 90, 0.22);
+}
+
+/* Primary call to action */
+.ui-link--solid {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    border-radius: 6px;
+    padding: 8px 14px;
+}
+
+.ui-link--solid:hover,
+.ui-link--solid:focus-visible {
+    background-color: var(--color-accent-hover);
+    color: var(--color-on-accent);
+}
+
 .ui-link--sm {
     font-size: 0.875rem;
 }

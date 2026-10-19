@@ -84,8 +84,8 @@ export const PROJECTS = [
             {
                 src: `/projects/portfolio-2026/portfolio_full.webp`,
                 alt: `portfolio current screenshot 2`,
-                width: 1905,
-                height: 3869,
+                width: 1920,
+                height: 4126,
             },
         ],
     }),

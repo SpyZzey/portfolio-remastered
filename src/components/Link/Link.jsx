@@ -1,7 +1,7 @@
 import { cloneElement, isValidElement } from 'react';
 import './styles.css';
 
-const LINK_VARIANTS = new Set(['inline', 'subtle', 'button']);
+const LINK_VARIANTS = new Set(['inline', 'subtle', 'button', 'solid']);
 const LINK_SIZES = new Set(['sm', 'md', 'lg']);
 
 const cx = (...classes) => classes.filter(Boolean).join(' ');

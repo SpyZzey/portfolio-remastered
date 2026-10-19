@@ -1,6 +1,14 @@
 import './styles.css';
-import logoImage from '../../assets/logo.webp';
+import logoImage from '../../assets/logo_light.webp';
 
+const NAV_LINKS = [
+    { href: '/#about-me', label: 'About' },
+    { href: '/#projects', label: 'Projects' },
+    { href: '/#timeline', label: 'Timeline' },
+    { href: '/#contact', label: 'Contact' },
+];
+
+// Scroll state (scrolled / hidden) and the current section highlight are handled in Layout.astro
 export default function Navbar() {
     return (
         <nav
@@ -13,16 +21,18 @@ export default function Navbar() {
                     className={'navbar-logo'}>
                     <img
                         src={logoImage.src}
-                        height="40"
-                        width="40"
+                        height="36"
+                        width="36"
                         alt=""
                     />
                 </a>
-                <div className={'navbar-links'}>
-                    <a href={'/#about-me'}>About</a>
-                    <a href={'/#projects'}>Projects</a>
-                    <a href={'/#timeline'}>Timeline</a>
-                </div>
+                <ul className={'navbar-links'}>
+                    {NAV_LINKS.map((link) => (
+                        <li key={link.href}>
+                            <a href={link.href}>{link.label}</a>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </nav>
     );
