@@ -123,14 +123,22 @@ function ProjectCard({ project, ref, fromHome = false, expanded = false }) {
                 {/* Shares its transition name with the lead image on the project page, so it morphs into it */}
                 <div
                     className="project-image"
-                    style={{ viewTransitionName: `project-image-${project.id}` }}>
+                    style={{
+                        viewTransitionName: `project-image-${project.id}`,
+                        viewTransitionClass: 'project-image',
+                    }}>
                     <img
                         src={project.image.src}
                         alt=""
                     />
                 </div>
                 <div className="project-info">
-                    <h3>
+                    <h3
+                        className="project-card-title"
+                        style={{
+                            viewTransitionName: `project-title-${project.id}`,
+                            viewTransitionClass: 'project-title',
+                        }}>
                         {project.name}
                         <ArrowUpRightIcon
                             className="project-arrow"

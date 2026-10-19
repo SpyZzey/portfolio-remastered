@@ -43,7 +43,7 @@
     .hero-greeting,
     .hero-name,
     .hero-tagline {
-        animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: hero-fade-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     .hero-greeting {
         animation-delay: 0.1s;
@@ -110,7 +110,7 @@
     display: inline-block;
     /* Slow settle back, so moving the cursor across leaves a short trail */
     transition:
-        translate 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
         color 0.9s ease;
 }
 

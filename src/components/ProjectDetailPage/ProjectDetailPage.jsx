@@ -36,7 +36,13 @@ export default function ProjectDetailPage({ projectId }) {
                                 <span className="project-warning">{project.warning}</span>
                             ) : null}
                         </div>
-                        <h1>{project.name}</h1>
+                        <h1
+                            style={{
+                                viewTransitionName: `project-title-${project.id}`,
+                                viewTransitionClass: 'project-title',
+                            }}>
+                            {project.name}
+                        </h1>
                         <p className="project-tagline">{project.description}</p>
 
                         {project.link || project.github?.length ? (
@@ -75,7 +81,10 @@ export default function ProjectDetailPage({ projectId }) {
                     {/* Shares its transition name with the project card image on the home page */}
                     <figure
                         className="project-lead-image"
-                        style={{ viewTransitionName: `project-image-${project.id}` }}>
+                        style={{
+                            viewTransitionName: `project-image-${project.id}`,
+                            viewTransitionClass: 'project-image',
+                        }}>
                         <img
                             src={project.image.src}
                             alt={project.image.alt ?? `${project.name} preview`}

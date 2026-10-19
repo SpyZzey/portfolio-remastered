@@ -76,6 +76,8 @@
         flex-direction: column;
         gap: 8px;
         > h3 {
+            /* Only as wide as the text, so it scales cleanly into the project page headline */
+            width: fit-content;
             display: flex;
             align-items: center;
             gap: 6px;

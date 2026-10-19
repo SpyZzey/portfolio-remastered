@@ -85,10 +85,66 @@ h6 {
     letter-spacing: -0.01em;
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation-duration: 320ms;
-    animation-timing-function: ease;
+/* ---------- Page transitions (direction classes are set in Layout.astro) ---------- */
+
+/* Opening a page: the current one sinks back, the new one rises in */
+:root.vt-forward::view-transition-old(root) {
+    animation: page-sink 0.35s cubic-bezier(0.4, 0, 1, 1) both;
+}
+:root.vt-forward::view-transition-new(root) {
+    animation: page-rise 0.6s cubic-bezier(0.2, 0, 0, 1) 0.12s both;
+}
+
+/* Going back: the current page drops away, the previous one settles into place */
+:root.vt-back::view-transition-old(root) {
+    animation: page-drop 0.25s cubic-bezier(0.4, 0, 1, 1) both;
+}
+:root.vt-back::view-transition-new(root) {
+    animation: page-settle 0.5s cubic-bezier(0.2, 0, 0, 1) 0.18s both;
+}
+
+/* The project card's image and title grow into the project page's lead image and headline */
+::view-transition-group(*.project-image),
+::view-transition-group(*.project-title) {
+    animation-duration: 0.35s;
+    animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+::view-transition-old(*.project-image),
+::view-transition-new(*.project-image) {
+    animation-duration: 0.35s;
+}
+
+/* The navbar stays on top of everything that moves */
+::view-transition-group(site-nav) {
+    z-index: 100;
+}
+
+@keyframes page-sink {
+    to {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+}
+
+@keyframes page-rise {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+}
+
+@keyframes page-drop {
+    to {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+}
+
+@keyframes page-settle {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
 }
 
 h1 {
@@ -219,7 +275,7 @@ body::after {
     [data-reveal] {
         transition:
             opacity 0.6s ease,
-            translate var(--reveal-duration, 0.7s) cubic-bezier(0.22, 1, 0.36, 1),
+            translate var(--reveal-duration, 0.35s) cubic-bezier(0.22, 1, 0.36, 1),
             scale 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
         transition-delay: var(--reveal-delay, 0ms);
     }
@@ -267,15 +323,15 @@ body::after {
     }
 }
 
+/* Set only while a "going back" page transition runs (see Layout.astro) */
+:root.no-image-morph :is(.project-image, .project-lead-image, .project-card-title, .project-detail h1) {
+    view-transition-name: none !important;
+}
+
 /*
  * Returning to a page (see Layout.astro): everything is shown in its final state right away,
  * no reveal-on-scroll, line drawing or hero entrance. Hover effects keep working.
  */
-/* Set only while a "going back" page transition runs (see Layout.astro) */
-:root.no-image-morph .project-image {
-    view-transition-name: none !important;
-}
-
 :root.skip-entrance {
     [data-reveal] {
         opacity: 1 !important;
@@ -354,8 +410,9 @@ main:focus {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-        animation: none;
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
     }
 }

@@ -259,21 +259,50 @@ const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
     });
 </script>
 <script>
-    // Going back (browser back/forward or the "Back to projects" link) shows the page in its final state.
+    // Page transition direction (animations in global.css).
+    // Going back = browser back/forward or the "Back to projects" link. Going back skips the entrance
+    // animations, and the card image/title don't morph: the page only scrolls to the card after the
+    // transition has captured its end state, so they would fly towards the card's spot at the top.
+    const TRANSITION_CLASSES = ['vt-forward', 'vt-back', 'no-image-morph'];
+    let isReturning = false;
+
+    const setTransitionClasses = (root: HTMLElement) => {
+        root.classList.remove(...TRANSITION_CLASSES);
+        root.classList.add(isReturning ? 'vt-back' : 'vt-forward');
+        if (isReturning) root.classList.add('no-image-morph');
+    };
+
+    // Runs before the old page is captured, so the classes already apply to it
+    document.addEventListener('astro:before-preparation', (event) => {
+        isReturning = event.navigationType === 'traverse' || event.to.hash.startsWith('#project-');
+        setTransitionClasses(document.documentElement);
+
+        // Only the project being opened morphs. Everything else goes with the rest of the page,
+        // e.g. the other project cards, or the lead image when leaving a project page.
+        const openedProjectId = event.to.pathname.match(/^\/projects\/([^/]+)/)?.[1];
+        const morphingNames = openedProjectId
+            ? [`project-image-${openedProjectId}`, `project-title-${openedProjectId}`]
+            : [];
+        document
+            .querySelectorAll<HTMLElement>(
+                '.project-image, .project-card-title, .project-lead-image, .project-detail h1',
+            )
+            .forEach((element) => {
+                if (!morphingNames.includes(element.style.viewTransitionName)) {
+                    element.style.viewTransitionName = 'none';
+                }
+            });
+    });
+
+    // The new page's <html> attributes replace the current ones, so set the classes there too
     document.addEventListener('astro:before-swap', (event) => {
-        const isReturning = event.navigationType === 'traverse' || event.to.hash.startsWith('#project-');
         const root = event.newDocument.documentElement;
         root.classList.toggle('skip-entrance', isReturning);
+        setTransitionClasses(root);
 
-        // The page only scrolls to the card after this transition has captured its end state, so the
-        // image would morph towards the card's position at the top of the page. Cross-fade instead,
-        // and re-enable the morph once the transition is over.
-        if (isReturning) {
-            root.classList.add('no-image-morph');
-            const enableMorph = () => document.documentElement.classList.remove('no-image-morph');
-            if (event.viewTransition) event.viewTransition.finished.finally(enableMorph);
-            else document.addEventListener('astro:page-load', enableMorph, { once: true });
-        }
+        const cleanUp = () => document.documentElement.classList.remove(...TRANSITION_CLASSES);
+        if (event.viewTransition) event.viewTransition.finished.finally(cleanUp);
+        else document.addEventListener('astro:page-load', cleanUp, { once: true });
     });
 
     // Smooth scrolling is for in-page anchor links only. After a page change, jump straight to the

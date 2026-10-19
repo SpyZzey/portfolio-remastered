@@ -4,6 +4,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
+    view-transition-name: site-nav;
     border-bottom: 1px solid transparent;
     transition:
         background-color 0.3s ease,
