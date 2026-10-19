@@ -8,6 +8,27 @@
     margin-top: 18px;
 }
 
+/* Large screens: the fun fact sits in the free space to the right of the text */
+.titled-section:has(> .about-fun-fact) {
+    position: relative;
+}
+
+.about-fun-fact {
+    position: absolute;
+    top: 140px;
+    right: 48px;
+}
+
+/* The space next to the text only gets wide enough from 1400px; until then keep the stacked note */
+@media screen and (min-width: 1280px) and (max-width: 1399px) {
+    .fun-fact--aside.about-fun-fact {
+        display: none;
+    }
+    .fun-fact--stacked.about-fun-fact-stacked {
+        display: flex;
+    }
+}
+
 .about-me > .skills {
     margin-top: 28px;
 }

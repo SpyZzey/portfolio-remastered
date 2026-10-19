@@ -8,14 +8,17 @@ import { ArrowUpRightIcon } from 'lucide-react';
 import Button from '../Button/Button';
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion';
 
-const INITIAL_PROJECT_COUNT = 3;
+// Four are rendered so the two-column layout shows two full rows; in the one- and three-column
+// layouts the fourth stays hidden until "Show more" (see .project-list[data-collapsed] in styles.css)
+const INITIAL_PROJECT_COUNT = 4;
 
 export default function ProjectList({ showAll = false }) {
     const [projects, setProjects] = React.useState(
         showAll ? PROJECTS : PROJECTS.slice(0, INITIAL_PROJECT_COUNT),
     );
     const cardRefs = useRef([]);
-    const focusFirstNewProject = useRef(false);
+    // Index of the first card "Show more" reveals, to move focus there
+    const firstNewProjectIndex = useRef(null);
     const returnToProjectId = useRef(null);
 
     // Arriving via #projects shows the full list. Arriving via #project-<id> (the "Back to projects"
@@ -32,9 +35,9 @@ export default function ProjectList({ showAll = false }) {
 
     useEffect(() => {
         // The "Show more" button disappears once clicked, so move focus to the first newly shown project
-        if (focusFirstNewProject.current) {
-            focusFirstNewProject.current = false;
-            cardRefs.current[INITIAL_PROJECT_COUNT]?.focus();
+        if (firstNewProjectIndex.current !== null) {
+            cardRefs.current[firstNewProjectIndex.current]?.focus();
+            firstNewProjectIndex.current = null;
             return;
         }
 
@@ -50,9 +53,12 @@ export default function ProjectList({ showAll = false }) {
     }, [projects]);
 
     const onShowMoreProjects = () => {
-        focusFirstNewProject.current = true;
+        // Cards hidden by CSS have no offsetParent
+        firstNewProjectIndex.current = cardRefs.current.filter((card) => card?.offsetParent).length;
         setProjects(PROJECTS);
     };
+
+    const isCollapsed = projects.length < PROJECTS.length;
 
     return (
         <section
@@ -65,7 +71,8 @@ export default function ProjectList({ showAll = false }) {
             </h2>
             <div
                 id="project-list"
-                className={'project-list'}>
+                className={'project-list'}
+                data-collapsed={isCollapsed ? '' : undefined}>
                 {projects.map((project, index) => (
                     <div
                         key={project.id}

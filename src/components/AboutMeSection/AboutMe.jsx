@@ -1,6 +1,8 @@
 import './styles.css';
 import { SkillTagGroup } from '../SkillsSection/Skills';
 import { SKILLS } from '../../data/skills';
+import FunFact from '../FunFact/FunFact';
+import { FUN_FACTS } from '../../data/funFacts';
 
 const PARAGRAPHS = [
     `I'm Simon, a software developer who loves building appealing software of all kinds. I live in
@@ -41,6 +43,11 @@ export default function AboutMe() {
                     className="skills"
                 />
             </div>
+            <FunFact
+                {...FUN_FACTS.about}
+                variant="aside"
+                className="about-fun-fact"
+            />
         </section>
     );
 }

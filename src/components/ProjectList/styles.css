@@ -2,8 +2,30 @@
     margin-top: 40px;
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-template-rows: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* While collapsed only full rows show: the fourth card is visible in the two-column layout only */
+.project-list[data-collapsed] > .project-list-item:nth-child(4) {
+    display: none;
+}
+
+@media screen and (max-width: 1359px) {
+    .project-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .project-list[data-collapsed] > .project-list-item:nth-child(4) {
+        display: grid;
+    }
+}
+
+@media screen and (max-width: 936px) {
+    .project-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .project-list[data-collapsed] > .project-list-item:nth-child(4) {
+        display: none;
+    }
 }
 /* Lets the tilt wrapper and card fill the grid cell */
 .project-list-item {
@@ -117,10 +139,6 @@
 
 @media screen and (max-width: 767px) {
     .project-list {
-        display: block;
         margin-top: 12px;
-    }
-    .project {
-        margin-bottom: 24px;
     }
 }

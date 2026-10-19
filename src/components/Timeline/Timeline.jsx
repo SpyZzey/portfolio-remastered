@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 import './styles.css';
+import FunFact from '../FunFact/FunFact';
+import { FUN_FACTS } from '../../data/funFacts';
 
 const DEFAULT_ENTRIES = [
     {
@@ -17,6 +19,7 @@ const DEFAULT_ENTRIES = [
              winning the gold medal in Speed Programming and placing 2nd in Software Applications Development.`,
         dateString: 'September 2025',
         image: '/timeline/euroskills_herning_2025.webp',
+        funFact: FUN_FACTS.euroskills,
     },
     {
         title: 'WorldSkills Lyon 2024',
@@ -43,6 +46,7 @@ const DEFAULT_ENTRIES = [
         description: `Enrolled in Junior Studies while still in high school.`,
         dateString: 'April 2019 - Sep 2020',
         image: '/timeline/uni_cologne.svg',
+        funFact: FUN_FACTS.juniorStudies,
     },
     {
         title: 'Silverberg-Gymnasium Bedburg',
@@ -84,7 +88,7 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                         </div>
                     );
 
-                    const imageContent = entry.image ? (
+                    const image = entry.image ? (
                         <div
                             className="timeline-image-wrap"
                             data-reveal={leftIsText ? 'right' : 'left'}
@@ -97,6 +101,25 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                         </div>
                     ) : (
                         <div className="timeline-image-wrap" />
+                    );
+                    // Large screens: the fun fact sits next to the image, on the side away from the line
+                    const funFact = entry.funFact ? (
+                        <FunFact
+                            {...entry.funFact}
+                            variant="aside"
+                            className="timeline-fun-fact"
+                        />
+                    ) : null;
+                    const imageContent = leftIsText ? (
+                        <>
+                            {image}
+                            {funFact}
+                        </>
+                    ) : (
+                        <>
+                            {funFact}
+                            {image}
+                        </>
                     );
 
                     return (

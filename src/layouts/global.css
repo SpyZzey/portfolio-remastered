@@ -335,9 +335,12 @@ body::after {
 :root.skip-entrance {
     [data-reveal] {
         opacity: 1 !important;
-        translate: none !important;
         scale: none !important;
         transition: none !important;
+    }
+    /* Only the slide-in variants use translate; others (e.g. the timeline dots) need their own */
+    :is([data-reveal='up'], [data-reveal='rise'], [data-reveal='left'], [data-reveal='right']) {
+        translate: none !important;
     }
     [data-reveal]::before,
     [data-reveal]::after {

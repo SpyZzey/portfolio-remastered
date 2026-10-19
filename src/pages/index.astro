@@ -7,6 +7,8 @@ import AboutMe from '../components/AboutMeSection/AboutMe.jsx';
 import Contact from '../components/Contact/Contact.jsx';
 import Spacer from '../components/Spacer/Spacer.jsx';
 import Timeline from '../components/Timeline/Timeline.jsx';
+import FunFact from '../components/FunFact/FunFact.jsx';
+import { FUN_FACTS } from '../data/funFacts';
 ---
 
 <Layout>
@@ -21,7 +23,12 @@ import Timeline from '../components/Timeline/Timeline.jsx';
         <Spacer height={50} />
         <AboutMe client:load />
 
-        <Spacer height={50} />
+        <FunFact
+            {...FUN_FACTS.about}
+            variant="stacked"
+            className="about-fun-fact-stacked"
+        />
+        <Spacer height={40} />
 
         <hr data-reveal="line" />
 
@@ -29,12 +36,24 @@ import Timeline from '../components/Timeline/Timeline.jsx';
         <Spacer height={50} />
         <ProjectList client:load />
 
+        <Spacer height={40} />
+        <FunFact
+            {...FUN_FACTS.euroskills}
+            variant="stacked"
+        />
+
         <div id="timeline"></div>
         <Spacer height={50} />
         <Timeline />
 
+        <Spacer height={40} />
+        <FunFact
+            {...FUN_FACTS.juniorStudies}
+            variant="stacked"
+        />
+
         <div id="contact"></div>
-        <Spacer height={50} />
+        <Spacer height={30} />
         <hr data-reveal="line" />
         <Spacer height={50} />
         <Contact />
