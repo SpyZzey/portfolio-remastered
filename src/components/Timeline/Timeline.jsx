@@ -62,14 +62,22 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
         <section
             className="page timeline-section"
             aria-labelledby="timeline-heading">
-            <h2 id="timeline-heading">Timeline</h2>
-            <ol className="timeline">
+            <h2
+                id="timeline-heading"
+                data-reveal="up">
+                Timeline
+            </h2>
+            <ol
+                className="timeline"
+                data-reveal="line">
                 {entries.map((entry, index) => {
                     const sideClass = index % 2 === 0 ? 'left' : 'right';
                     const leftIsText = sideClass === 'left';
                     const dateLabel = entry.dateString ? entry.dateString : null;
                     const textContent = (
-                        <div className="timeline-card timeline-text-card">
+                        <div
+                            className="timeline-card timeline-text-card"
+                            data-reveal={leftIsText ? 'left' : 'right'}>
                             {dateLabel && <span className="timeline-year">{dateLabel}</span>}
                             <h3>{entry.title}</h3>
                             <p>{entry.description}</p>
@@ -77,7 +85,10 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                     );
 
                     const imageContent = entry.image ? (
-                        <div className="timeline-image-wrap">
+                        <div
+                            className="timeline-image-wrap"
+                            data-reveal={leftIsText ? 'right' : 'left'}
+                            style={{ '--reveal-delay': '120ms' }}>
                             <img
                                 className="timeline-image"
                                 src={entry.image}
@@ -95,6 +106,8 @@ export default function Timeline({ entries = DEFAULT_ENTRIES }) {
                             <div
                                 className="timeline-dot"
                                 aria-hidden="true"
+                                data-reveal="pop"
+                                style={{ '--reveal-delay': '200ms' }}
                             />
                             <div
                                 className={`timeline-side timeline-left-side ${leftIsText ? 'timeline-side-text' : 'timeline-side-image'}`}>

@@ -7,14 +7,22 @@ export default function AboutMe() {
         <section
             className={'page titled-section'}
             aria-labelledby="about-me-heading">
-            <h2 id="about-me-heading">About Me</h2>
+            <h2
+                id="about-me-heading"
+                data-reveal="up">
+                About Me
+            </h2>
             <div className="about-me titled-section-content">
-                <p>
+                <p
+                    data-reveal="up"
+                    style={{ '--reveal-delay': '100ms' }}>
                     I'm Simon, a passionate software developer with a love for creating all kinds of appealing
                     software. Currently, I live in the beautiful city of Aachen, Germany, and working as a
                     Frontend Engineer at Amazon Web Services in Berlin.
                 </p>
-                <p>
+                <p
+                    data-reveal="up"
+                    style={{ '--reveal-delay': '200ms' }}>
                     When I was 11 years old, I started programming extensions for a video game called
                     Minecraft with the help of youtube videos. I loved creating my own ideas and seeing them
                     come to life. This is what sparked my interest in programming. But at some point, I wanted

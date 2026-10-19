@@ -97,6 +97,16 @@ const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
             rel="preconnect"
             href="https://fonts.googleapis.com"
         />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <!-- Handwriting font for the note in the hero -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap"
+        />
         <title>{title}</title>
     </head>
     <body>
@@ -173,6 +183,46 @@ const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
         ring?.classList.remove('clicking');
     });
     */
+</script>
+<script>
+    // Reveal-on-scroll for elements with data-reveal (styles in global.css).
+    // A MutationObserver picks up elements rendered later, e.g. client:only islands or "Show more".
+    let revealObserver: IntersectionObserver | undefined;
+    let mutationObserver: MutationObserver | undefined;
+
+    const observeReveals = (root: ParentNode) => {
+        root.querySelectorAll('[data-reveal]:not([data-revealed])').forEach((element) =>
+            revealObserver?.observe(element),
+        );
+    };
+
+    document.addEventListener('astro:page-load', () => {
+        revealObserver?.disconnect();
+        mutationObserver?.disconnect();
+
+        revealObserver = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (!entry.isIntersecting) continue;
+                    entry.target.setAttribute('data-revealed', '');
+                    revealObserver?.unobserve(entry.target);
+                }
+            },
+            { rootMargin: '0px 0px -8% 0px', threshold: 0.1 },
+        );
+        observeReveals(document);
+
+        mutationObserver = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                for (const node of mutation.addedNodes) {
+                    if (!(node instanceof Element)) continue;
+                    if (node.matches('[data-reveal]:not([data-revealed])')) revealObserver?.observe(node);
+                    observeReveals(node);
+                }
+            }
+        });
+        mutationObserver.observe(document.body, { childList: true, subtree: true });
+    });
 </script>
 <script>
     const navbar = document.querySelector('.navbar');

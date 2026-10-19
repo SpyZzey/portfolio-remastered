@@ -49,7 +49,9 @@ export function SkillTagGroup({ skills, label, className }) {
             {skills.map((skill, index) => (
                 <li
                     key={skill.skill}
-                    role="none">
+                    role="none"
+                    data-reveal="pop"
+                    style={{ '--reveal-delay': `${index * 35}ms` }}>
                     <SkillTag
                         ref={(element) => (tagRefs.current[index] = element)}
                         image={skill.image}

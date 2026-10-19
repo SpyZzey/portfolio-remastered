@@ -8,7 +8,6 @@
     width: 100%;
     /* Default transparent background */
     background: rgba(0, 0, 0, 0); /* No background initially */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease; /* Smooth transition when changing background */
 }
 .navbar-content {
@@ -21,7 +20,7 @@
 }
 
 .navbar.scrolled {
-    background: rgba(11, 11, 13, 0.8); /* Change to desired background when scrolled */
+    background: rgba(12, 11, 10, 0.8); /* Change to desired background when scrolled */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);

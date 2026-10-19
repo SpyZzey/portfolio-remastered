@@ -40,17 +40,26 @@ export default function ProjectList({ showAll = false }) {
         <section
             className={'page projects'}
             aria-labelledby="projects-heading">
-            <h2 id="projects-heading">My Projects</h2>
+            <h2
+                id="projects-heading"
+                data-reveal="up">
+                My Projects
+            </h2>
             <div
                 id="project-list"
                 className={'project-list'}>
                 {projects.map((project, index) => (
-                    <ProjectCard
+                    <div
                         key={project.id}
-                        ref={(element) => (cardRefs.current[index] = element)}
-                        project={project}
-                        fromHome={!showAll}
-                    />
+                        className="project-list-item"
+                        data-reveal="up"
+                        style={{ '--reveal-delay': `${(index % 3) * 90}ms` }}>
+                        <ProjectCard
+                            ref={(element) => (cardRefs.current[index] = element)}
+                            project={project}
+                            fromHome={!showAll}
+                        />
+                    </div>
                 ))}
             </div>
             <Spacer height={24} />

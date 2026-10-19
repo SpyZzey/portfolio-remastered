@@ -1,19 +1,19 @@
 :root {
     color-scheme: dark;
 
-    --color-bg: #0b0b0d;
-    --color-surface: #141417;
-    --color-surface-hover: #1a1a1e;
-    --color-border: #26262b;
-    --color-border-strong: #3a3a42;
-    --color-text: #ededef;
-    --color-text-secondary: #c4c4cc;
-    --color-text-muted: #9b9ba3;
-    --color-accent: #7aa2ff;
-    --color-accent-hover: #9bb9ff;
-    --color-accent-soft: rgba(122, 162, 255, 0.12);
-    --color-on-accent: #0b0b0d;
-    --color-danger: #ff8080;
+    --color-bg: #0c0b0a;
+    --color-surface: #161412;
+    --color-surface-hover: #1d1a17;
+    --color-border: #2a2622;
+    --color-border-strong: #3d3731;
+    --color-text: #f2efe9;
+    --color-text-secondary: #cfc8be;
+    --color-text-muted: #a39d94;
+    --color-accent: #f0b45a;
+    --color-accent-hover: #f5c77f;
+    --color-accent-soft: rgba(240, 180, 90, 0.14);
+    --color-on-accent: #0c0b0a;
+    --color-danger: #ff8a7a;
 }
 
 html,
@@ -133,7 +133,7 @@ button {
 }
 .titled-section {
     display: flex;
-    padding: 50px 40px;
+    padding: 50px 48px;
     gap: 40px;
     > .titled-section-content {
         border-left: 1px solid var(--color-border-strong);
@@ -146,7 +146,6 @@ button {
     width: 200px;
     max-width: 200px;
     flex: 1 0 100px;
-    text-align: end;
 }
 
 ul {
@@ -187,6 +186,59 @@ ul {
     border-radius: 8px;
     display: block;
     margin-bottom: 30px;
+}
+
+/* Subtle film grain over the whole page */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/*
+ * Reveal on scroll: elements with data-reveal="<variant>" start hidden and animate in once
+ * Layout.astro marks them with data-revealed. Stagger with an inline --reveal-delay.
+ * Uses the individual translate/scale properties so it never clashes with an element's own transform.
+ */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+        transition:
+            opacity 0.6s ease,
+            translate var(--reveal-duration, 0.7s) cubic-bezier(0.22, 1, 0.36, 1),
+            scale 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+    :is(
+        [data-reveal='up'],
+        [data-reveal='rise'],
+        [data-reveal='left'],
+        [data-reveal='right'],
+        [data-reveal='pop']
+    ):not([data-revealed]) {
+        opacity: 0;
+    }
+    [data-reveal='up']:not([data-revealed]) {
+        translate: 0 24px;
+    }
+    [data-reveal='rise'] {
+        --reveal-duration: 1.1s;
+    }
+    [data-reveal='rise']:not([data-revealed]) {
+        translate: 0 80px;
+    }
+    [data-reveal='left']:not([data-revealed]) {
+        translate: -32px 0;
+    }
+    [data-reveal='right']:not([data-revealed]) {
+        translate: 32px 0;
+    }
+    [data-reveal='pop']:not([data-revealed]) {
+        scale: 0.6;
+    }
 }
 
 /* Accessibility */

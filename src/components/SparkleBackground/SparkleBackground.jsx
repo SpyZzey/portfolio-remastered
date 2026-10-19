@@ -51,10 +51,10 @@ const SparkleBackground = () => {
                         const normalizedX = x / width;
                         const brightness = 0.1 + normalizedX * 0.4; // 10% to 50%
 
-                        // Cross color - neutral grey, picking up a hint of the accent blue on the right
-                        const r = Math.floor(150 - 28 * normalizedX);
-                        const g = Math.floor(155 + 7 * normalizedX);
-                        const b = Math.floor(170 + 85 * normalizedX);
+                        // Cross color - warm grey, picking up a hint of the accent amber on the right
+                        const r = Math.floor(150 + 90 * normalizedX);
+                        const g = Math.floor(145 + 35 * normalizedX);
+                        const b = Math.floor(135 - 45 * normalizedX);
 
                         const colorStr = `rgba(${r}, ${g}, ${b}, ${brightness})`;
 
