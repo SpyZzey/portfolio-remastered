@@ -341,9 +341,13 @@ const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
 
             navbar.classList.toggle('scrolled', scrollY > 0);
 
-            // Ignore tiny jitters so the bar doesn't flicker
+            // Ignore tiny jitters so the bar doesn't flicker; never hide it while the menu is open
             if (Math.abs(scrollY - lastScrollY) > 4) {
-                navbar.classList.toggle('navbar--hidden', scrollY > 160 && scrollY > lastScrollY);
+                const isMenuOpen = navbar.classList.contains('navbar--menu-open');
+                navbar.classList.toggle(
+                    'navbar--hidden',
+                    !isMenuOpen && scrollY > 160 && scrollY > lastScrollY,
+                );
                 lastScrollY = scrollY;
             }
 
@@ -364,9 +368,43 @@ const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
         window.addEventListener('scroll', onScroll, { passive: true });
         update();
 
+        // Small screens: the menu button opens the links as a panel below the bar
+        const menuButton = navbar.querySelector<HTMLButtonElement>('.navbar-menu-button');
+        const isMenuOpen = () => navbar.classList.contains('navbar--menu-open');
+        const setMenuOpen = (open: boolean) => {
+            navbar.classList.toggle('navbar--menu-open', open);
+            menuButton?.setAttribute('aria-expanded', String(open));
+        };
+
+        menuButton?.addEventListener('click', () => setMenuOpen(!isMenuOpen()));
+        navbar
+            .querySelectorAll('.navbar-links a')
+            .forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
+
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key !== 'Escape' || !isMenuOpen()) return;
+            setMenuOpen(false);
+            menuButton?.focus();
+        };
+        const onPointerDown = (event: PointerEvent) => {
+            if (isMenuOpen() && !navbar.contains(event.target as Node)) setMenuOpen(false);
+        };
+        // Widening the window past the breakpoint shows the inline links again
+        const wideScreen = window.matchMedia('(min-width: 560px)');
+        const onWideScreen = () => {
+            if (wideScreen.matches) setMenuOpen(false);
+        };
+
+        document.addEventListener('keydown', onKeyDown);
+        document.addEventListener('pointerdown', onPointerDown);
+        wideScreen.addEventListener('change', onWideScreen);
+
         removeNavbarListener = () => {
             window.removeEventListener('scroll', onScroll);
             if (frameId !== null) cancelAnimationFrame(frameId);
+            document.removeEventListener('keydown', onKeyDown);
+            document.removeEventListener('pointerdown', onPointerDown);
+            wideScreen.removeEventListener('change', onWideScreen);
         };
     });
 </script>

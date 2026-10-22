@@ -26,7 +26,23 @@ export default function Navbar() {
                         alt=""
                     />
                 </a>
-                <ul className={'navbar-links'}>
+                {/* Small screens: the links move into a panel this button opens (behaviour in Layout.astro) */}
+                <button
+                    type="button"
+                    className="navbar-menu-button"
+                    aria-expanded="false"
+                    aria-controls="navbar-links">
+                    <span className="navbar-menu-label">Menu</span>
+                    <span
+                        className="navbar-menu-icon"
+                        aria-hidden="true">
+                        <span />
+                        <span />
+                    </span>
+                </button>
+                <ul
+                    id="navbar-links"
+                    className={'navbar-links'}>
                     {NAV_LINKS.map((link) => (
                         <li key={link.href}>
                             <a href={link.href}>{link.label}</a>

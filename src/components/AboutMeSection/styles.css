@@ -34,7 +34,8 @@
 }
 
 @media screen and (max-width: 767px) {
-    .about-me {
+    /* More specific than the global .titled-section > .titled-section-content rule it overrides */
+    .titled-section > .about-me.titled-section-content {
         padding-left: 0;
     }
     .about-me::before {
