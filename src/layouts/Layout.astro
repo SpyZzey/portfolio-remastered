@@ -1,4 +1,7 @@
 ---
+// Fonts are self-hosted (no requests to Google): Instrument Sans for all text, Caveat for the handwritten notes
+import '@fontsource-variable/instrument-sans/wght.css';
+import '@fontsource/caveat/latin-600.css';
 import './global.css';
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer/Footer.jsx';
@@ -99,20 +102,6 @@ const { title = 'Simon Brebeck - Software Developer' } = Astro.props;
             content="https://simonbrebeck.de/og-image.png"
         />
 
-        <link
-            rel="preconnect"
-            href="https://fonts.googleapis.com"
-        />
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin
-        />
-        <!-- Instrument Sans for all text, Caveat for the handwritten note in the hero -->
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Caveat:wght@600&display=swap"
-        />
         <title>{title}</title>
     </head>
     <body>

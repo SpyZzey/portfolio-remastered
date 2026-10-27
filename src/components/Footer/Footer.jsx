@@ -8,7 +8,7 @@ export default function Footer() {
             data-reveal="line">
             <div className="footer-content">
                 <p>
-                    &copy; 2021 - {new Date().getFullYear()} Simon Brebeck · <a href="/impress">Impressum</a>
+                    &copy; 2021 - {new Date().getFullYear()} Simon Brebeck · <a href="/impress">Impressum</a> · <a href="/privacy">Datenschutz</a>
                 </p>
                 <ul className="footer-socials">
                     {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (

@@ -1,0 +1,170 @@
+---
+import Navbar from '../../components/Navbar/Navbar';
+import Spacer from '../../components/Spacer/Spacer';
+import Layout from '../../layouts/Layout.astro';
+import { EMAIL } from '../../data/contact';
+---
+
+<Layout title="Datenschutz | Simon Brebeck">
+    <Navbar />
+
+    <Spacer height={120} />
+    <main
+        id="main-content"
+        tabindex="-1">
+        <div class="page legal">
+            <h1>Privacy Policy</h1>
+            <p class="legal-intro">
+                This website does not use cookies, analytics, tracking or contact forms. The only personal data
+                processed is what is technically necessary to deliver the site to you, and anything you send me
+                by email. Last updated: October 2026.
+            </p>
+
+            <div class="legal-sections">
+                <section aria-labelledby="privacy-controller">
+                    <h2 id="privacy-controller">Who is responsible</h2>
+                    <p>The controller under the GDPR (DSGVO) is:</p>
+                    <address>
+                        Simon Brebeck<br />
+                        Frankenstraße 10-12<br />
+                        52070 Aachen<br />
+                        Germany<br />
+                        E-Mail: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+                    </address>
+                </section>
+
+                <section aria-labelledby="privacy-hosting">
+                    <h2 id="privacy-hosting">Hosting and server log files</h2>
+                    <p>
+                        This website is hosted by Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen,
+                        Germany, on a server located in Germany. I have concluded a data processing agreement with
+                        Hetzner under Art. 28 GDPR, which ensures that Hetzner processes your data only on my
+                        instructions and in compliance with the GDPR. Hetzner's privacy policy is available at
+                        <a
+                            href="https://www.hetzner.com/legal/privacy-policy"
+                            target="_blank"
+                            rel="noopener noreferrer">hetzner.com/legal/privacy-policy</a
+                        >.
+                    </p>
+                    <p>
+                        Every time you open a page, the web server
+                        automatically records information that your browser sends: your IP address, the date and
+                        time of the request, the requested page, the HTTP status code, the amount of data
+                        transferred, the referring page and your browser's user agent.
+                    </p>
+                    <p>
+                        This data is needed to deliver the website and to keep the server stable and secure, for
+                        example to detect attacks. The legal basis is my legitimate interest under Art. 6(1)(f)
+                        GDPR. The log files are not combined with other data and are deleted after 14 days at the
+                        latest, unless they are needed to investigate a specific security incident.
+                    </p>
+                </section>
+
+                <section aria-labelledby="privacy-email">
+                    <h2 id="privacy-email">Contacting me by email</h2>
+                    <p>
+                        If you write me an email, I process your email address, your name if given, and the
+                        content of your message to reply to you. The legal basis is Art. 6(1)(f) GDPR, or Art.
+                        6(1)(b) GDPR if your message is about entering into a contract. I delete the
+                        correspondence once it is no longer needed, unless statutory retention periods apply.
+                    </p>
+                </section>
+
+                <section aria-labelledby="privacy-cookies">
+                    <h2 id="privacy-cookies">No cookies, no tracking, no third-party content</h2>
+                    <p>
+                        This website sets no cookies and uses no analytics or tracking tools. Fonts and all other
+                        resources are served from this server, so opening the site sends no data to third parties
+                        such as Google.
+                    </p>
+                    <p>
+                        The site links to my profiles on GitHub, LinkedIn and Instagram and to other external
+                        websites. No data is transferred to these services until you click such a link. After
+                        that, the privacy policy of the respective website applies.
+                    </p>
+                </section>
+
+                <section aria-labelledby="privacy-rights">
+                    <h2 id="privacy-rights">Your rights</h2>
+                    <p>
+                        You have the right to access the personal data I hold about you (Art. 15 GDPR), to have it
+                        corrected (Art. 16) or deleted (Art. 17), to restrict its processing (Art. 18), to data
+                        portability (Art. 20), and to object to processing based on legitimate interest (Art. 21).
+                        To use these rights, just send me an email.
+                    </p>
+                    <p>
+                        You can also lodge a complaint with a data protection supervisory authority, for example
+                        the one responsible for me: Landesbeauftragte für Datenschutz und Informationsfreiheit
+                        Nordrhein-Westfalen (<a
+                            href="https://www.ldi.nrw.de"
+                            target="_blank"
+                            rel="noopener noreferrer">ldi.nrw.de</a
+                        >).
+                    </p>
+                </section>
+
+                <section aria-labelledby="privacy-encryption">
+                    <h2 id="privacy-encryption">Encryption</h2>
+                    <p>
+                        This website uses TLS encryption (HTTPS), so data transferred between your browser and the
+                        server cannot be read by third parties.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+    <Spacer height={120} />
+</Layout>
+
+<style>
+    .legal h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    .legal-intro {
+        max-width: 720px;
+        margin-top: 24px;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+    }
+
+    .legal-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        max-width: 720px;
+        margin-top: 48px;
+    }
+
+    .legal h2 {
+        margin-bottom: 12px;
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    .legal p,
+    address {
+        margin: 0 0 12px;
+        font-style: normal;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+    }
+
+    .legal a {
+        color: var(--color-text);
+        text-decoration: underline;
+        text-decoration-color: var(--color-border-strong);
+        text-underline-offset: 4px;
+        transition: text-decoration-color 0.2s ease;
+    }
+
+    .legal a:hover,
+    .legal a:focus-visible {
+        text-decoration-color: var(--color-accent);
+    }
+</style>
